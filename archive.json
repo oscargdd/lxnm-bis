@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-16T01:47:12.528448+00:00",
+  "timestamp": "2025-03-18T01:42:29.513746+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -71,6 +71,94 @@
       "body": "LXNM allows to add static routes to the VPN.  The new requirement is to add support for adding BFD configuration in the IPv4 and IPv6 static routes.\n\n\nProposal below:\n\ngrouping bfd-static-routes {\n    container bfd {\n     description\n       \"Container for Static Routes BFD Configuration.\";\n     leaf bfd-session-name {\n     type string;\n       description\n         \"Specifies the name of a BFD session to associate and track.\";\n      }\n      leaf desired-min-tx-interval {\n        type uint32;\n        units \"miliseconds\";\n        default \"1000\";\n        description\n          \"The minimum interval between\n           transmissions of BFD Control packets, as\n           desired by the operator.\";\n         reference\n           \"RFC 5880: Bidirectional Forwarding\n            Detection (BFD), Section 6.8.7\";\n        }\n  \n       leaf required-min-rx-interval {\n         type uint32;\n           units \"miliseconds\";\n           default \"1000\";\n           description\n             \"The minimum interval between received BFD \n              Control packets that the PE should support.\";\n           reference\n             \"RFC 5880: Bidirectional Forwarding\n              Detection (BFD), Section 6.8.7\";\n          }\n  \n       leaf local-multiplier {\n         type uint8 {\n           range \"1..255\";\n         }\n         default \"3\";\n         description\n           \"Specifies the detection multiplier that\n           is transmitted to a BFD peer.\n           The detection interval for the receiving\n           BFD peer is calculated by multiplying the\n           value of the negotiated transmission\n           interval by the received detection\n           multiplier value.\";\n        reference\n          \"RFC 5880: Bidirectional Forwarding\n           Detection (BFD), Section 6.8.7\";\n         }\n  }\n}\n\n\nBelow example on how to solve it with augmentation (in the bis this would go in the model)\n\naugment \"/l3vpn-ntw:l3vpn-ntw/l3vpn-ntw:vpn-services/l3vpn-ntw:vpn-service/l3vpn-ntw:vpn-nodes\"\n          + \"/l3vpn-ntw:vpn-node/l3vpn-ntw:vpn-network-accesses/l3vpn-ntw:vpn-network-access/l3vpn-ntw:routing-protocols\"\n          + \"/l3vpn-ntw:routing-protocol/l3vpn-ntw:static/l3vpn-ntw:cascaded-lan-prefixes/l3vpn-ntw:ipv4-lan-prefixes\" {\n        uses bfd-static-routes;\n    }\n\t\n\taugment \"/l3vpn-ntw:l3vpn-ntw/l3vpn-ntw:vpn-services/l3vpn-ntw:vpn-service/l3vpn-ntw:vpn-nodes\"\n          + \"/l3vpn-ntw:vpn-node/l3vpn-ntw:vpn-network-accesses/l3vpn-ntw:vpn-network-access/l3vpn-ntw:routing-protocols\"\n          + \"/l3vpn-ntw:routing-protocol/l3vpn-ntw:static/l3vpn-ntw:cascaded-lan-prefixes/l3vpn-ntw:ipv6-lan-prefixes\" {\n        uses bfd-static-routes;",
       "createdAt": "2025-03-15T12:25:11Z",
       "updatedAt": "2025-03-15T12:25:28Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOOJAfS86uTYja",
+      "title": "Management of VLAN 0 in tagged interfaces",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/2",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "enhancement",
+        "L3NM"
+      ],
+      "body": "SAP 1/1/1.0 is valid configuration: \n\n\n```\nconfigure\n    service\n        vprn 200 customer 200 create\n            interface \"interface-1\" create\n                address 192.168.1.1/24\n                sap 1/1/1.0 create\n                exit\n            exit\n        exit\n    exit\n```\n\nHowever the LxNM has a range defined for cvlan between 1 and 4094.  ",
+      "createdAt": "2025-03-17T09:18:34Z",
+      "updatedAt": "2025-03-17T12:58:10Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOOJAfS86uVx_S",
+      "title": "Missing blocks",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/3",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "L3NM"
+      ],
+      "body": "Present now in the AC-Model but not in the L3NM:\n\n- BGP Peer group creation\n- BGP Redistribution rules\n- ACL pointer to attach forwarding filter",
+      "createdAt": "2025-03-17T12:42:47Z",
+      "updatedAt": "2025-03-17T12:58:24Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOOJAfS86uVysV",
+      "title": "Operative Status Clarification",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/4",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "documentation",
+        "enhancement"
+      ],
+      "body": "Understanding the interrelationships between the operational status of VPN services, VPN nodes, and VPN network access is another significant operational gap. The status of a VPN service may depend on the status of the underlying VPN nodes and the network access provided to the VPN.\n\nTo address this gap, IETF should establish clear dependencies and correlations between the various operational statuses. This could involve defining specific criteria for determining the overall status of a VPN service based on the status of its constituent VPN nodes and network access components. Moreover, real-time monitoring and correlation of status information can provide insights into the health and performance of VPN services.",
+      "createdAt": "2025-03-17T12:43:49Z",
+      "updatedAt": "2025-03-17T14:15:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOOJAfS86uV2Vj",
+      "title": "Is the Service running on the Network?",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/5",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "How can the northbound system be assured with 100% certainty that a configuration has been successfully installed on the network device?\n\nWhat mechanisms or feedback loops exist to confirm successful configuration deployment beyond simple acknowledgment?\n\nHow does the system can handle transient errors or partial configuration applications from the model perspective?\n\nAre there specific operational attributes that can be used to reflect the real-time status of the configuration?\n\nDoes the network element provide any operational state parameters or notifications that indicate whether the configuration is active, pending, or has failed?\n\nIf a configuration is manually removed via CLI at the network device, is there a mechanism to reflect this change northbound?\n",
+      "createdAt": "2025-03-17T12:48:54Z",
+      "updatedAt": "2025-03-17T12:48:54Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOOJAfS86uV9XZ",
+      "title": "L2NM - EVPN Remote and Local eth-tag",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/6",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Following options are not supported \n\n  ```\nconfigure\n    service\n        epipe 1133 name \"EVPN-ELINE-SINGLE-HOME-FIII\" customer 1 create\n            description \"EVPN-ELINE-SINGLE-HOME-FIII\"\n            service-mtu 9098\n            bgp\n                route-distinguisher 27699:31133\n                route-target export target:27699:31133 import target:27699:31133\n            exit\n            bgp-evpn\n                **local-ac-name \"AC-LOCAL3-REMOTO3\"\n                    eth-tag 1133**\n                exit\n                **remote-ac-name \"AC-REMOTO3-LOCAL3\"\n                    eth-tag 3311**\n                exit\n                evi 1133\n                mpls bgp 1\n                    auto-bind-tunnel\n                        resolution any\n                    exit\n                    no shutdown       \n                exit\n            exit\n            sap lag-123:1133 create\n                no shutdown\n            exit\n            no shutdown\n        exit\n```",
+      "createdAt": "2025-03-17T12:56:08Z",
+      "updatedAt": "2025-03-17T12:56:08Z",
       "closedAt": null,
       "comments": []
     }
