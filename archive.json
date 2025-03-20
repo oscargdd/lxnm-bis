@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-18T01:42:29.513746+00:00",
+  "timestamp": "2025-03-20T01:41:29.526757+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -50,6 +50,16 @@
     },
     {
       "name": "L3NM",
+      "description": null,
+      "color": "aaaaaa"
+    },
+    {
+      "name": "L2NM",
+      "description": null,
+      "color": "aaaaaa"
+    },
+    {
+      "name": "EVPN",
       "description": null,
       "color": "aaaaaa"
     }
@@ -139,10 +149,14 @@
       "author": "sbarguil",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "question",
+        "L3NM",
+        "L2NM"
+      ],
       "body": "How can the northbound system be assured with 100% certainty that a configuration has been successfully installed on the network device?\n\nWhat mechanisms or feedback loops exist to confirm successful configuration deployment beyond simple acknowledgment?\n\nHow does the system can handle transient errors or partial configuration applications from the model perspective?\n\nAre there specific operational attributes that can be used to reflect the real-time status of the configuration?\n\nDoes the network element provide any operational state parameters or notifications that indicate whether the configuration is active, pending, or has failed?\n\nIf a configuration is manually removed via CLI at the network device, is there a mechanism to reflect this change northbound?\n",
       "createdAt": "2025-03-17T12:48:54Z",
-      "updatedAt": "2025-03-17T12:48:54Z",
+      "updatedAt": "2025-03-18T08:10:53Z",
       "closedAt": null,
       "comments": []
     },
@@ -155,10 +169,33 @@
       "author": "sbarguil",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "L2NM",
+        "EVPN"
+      ],
       "body": "Following options are not supported \n\n  ```\nconfigure\n    service\n        epipe 1133 name \"EVPN-ELINE-SINGLE-HOME-FIII\" customer 1 create\n            description \"EVPN-ELINE-SINGLE-HOME-FIII\"\n            service-mtu 9098\n            bgp\n                route-distinguisher 27699:31133\n                route-target export target:27699:31133 import target:27699:31133\n            exit\n            bgp-evpn\n                **local-ac-name \"AC-LOCAL3-REMOTO3\"\n                    eth-tag 1133**\n                exit\n                **remote-ac-name \"AC-REMOTO3-LOCAL3\"\n                    eth-tag 3311**\n                exit\n                evi 1133\n                mpls bgp 1\n                    auto-bind-tunnel\n                        resolution any\n                    exit\n                    no shutdown       \n                exit\n            exit\n            sap lag-123:1133 create\n                no shutdown\n            exit\n            no shutdown\n        exit\n```",
       "createdAt": "2025-03-17T12:56:08Z",
-      "updatedAt": "2025-03-17T12:56:08Z",
+      "updatedAt": "2025-03-18T08:10:33Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOOJAfS86udiBU",
+      "title": "L2NM: Explicity asign a RD at node level",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/7",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [
+        "enhancement",
+        "L2NM",
+        "EVPN"
+      ],
+      "body": "In the model, a RD must be always asigned via profile at service level. It is useful to be able to set a explicit RD directly at nodel level overriding the value of the profile. This way, a common profile can be used for the whole services for use cases where only RD changes per node. \n\nThe path were the leaf would be added.\n\"/l2vpn-ntw:l2vpn-ntw/l2vpn-ntw:vpn-services/l2vpn-ntw:vpn-service/l2vpn-ntw:vpn-nodes/l2vpn-ntw:vpn-node/\" \n+ \"l2vpn-ntw:active-global-parameters-profiles/l2vpn-ntw:global-parameters-profile\" {\n \n\tleaf rd {\n          type rt-types:route-distinguisher;\n          description\n            \"Indicates an RD value that is explicitly assigned.\";\n        }\n  }",
+      "createdAt": "2025-03-18T03:25:50Z",
+      "updatedAt": "2025-03-18T03:25:50Z",
       "closedAt": null,
       "comments": []
     }
