@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-30T01:50:30.187328+00:00",
+  "timestamp": "2025-04-01T01:55:16.622759+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -80,9 +80,17 @@
       ],
       "body": "LXNM allows to add static routes to the VPN.  The new requirement is to add support for adding BFD configuration in the IPv4 and IPv6 static routes.\n\n\nProposal below:\n\ngrouping bfd-static-routes {\n    container bfd {\n     description\n       \"Container for Static Routes BFD Configuration.\";\n     leaf bfd-session-name {\n     type string;\n       description\n         \"Specifies the name of a BFD session to associate and track.\";\n      }\n      leaf desired-min-tx-interval {\n        type uint32;\n        units \"miliseconds\";\n        default \"1000\";\n        description\n          \"The minimum interval between\n           transmissions of BFD Control packets, as\n           desired by the operator.\";\n         reference\n           \"RFC 5880: Bidirectional Forwarding\n            Detection (BFD), Section 6.8.7\";\n        }\n  \n       leaf required-min-rx-interval {\n         type uint32;\n           units \"miliseconds\";\n           default \"1000\";\n           description\n             \"The minimum interval between received BFD \n              Control packets that the PE should support.\";\n           reference\n             \"RFC 5880: Bidirectional Forwarding\n              Detection (BFD), Section 6.8.7\";\n          }\n  \n       leaf local-multiplier {\n         type uint8 {\n           range \"1..255\";\n         }\n         default \"3\";\n         description\n           \"Specifies the detection multiplier that\n           is transmitted to a BFD peer.\n           The detection interval for the receiving\n           BFD peer is calculated by multiplying the\n           value of the negotiated transmission\n           interval by the received detection\n           multiplier value.\";\n        reference\n          \"RFC 5880: Bidirectional Forwarding\n           Detection (BFD), Section 6.8.7\";\n         }\n  }\n}\n\n\nBelow example on how to solve it with augmentation (in the bis this would go in the model)\n\naugment \"/l3vpn-ntw:l3vpn-ntw/l3vpn-ntw:vpn-services/l3vpn-ntw:vpn-service/l3vpn-ntw:vpn-nodes\"\n          + \"/l3vpn-ntw:vpn-node/l3vpn-ntw:vpn-network-accesses/l3vpn-ntw:vpn-network-access/l3vpn-ntw:routing-protocols\"\n          + \"/l3vpn-ntw:routing-protocol/l3vpn-ntw:static/l3vpn-ntw:cascaded-lan-prefixes/l3vpn-ntw:ipv4-lan-prefixes\" {\n        uses bfd-static-routes;\n    }\n\t\n\taugment \"/l3vpn-ntw:l3vpn-ntw/l3vpn-ntw:vpn-services/l3vpn-ntw:vpn-service/l3vpn-ntw:vpn-nodes\"\n          + \"/l3vpn-ntw:vpn-node/l3vpn-ntw:vpn-network-accesses/l3vpn-ntw:vpn-network-access/l3vpn-ntw:routing-protocols\"\n          + \"/l3vpn-ntw:routing-protocol/l3vpn-ntw:static/l3vpn-ntw:cascaded-lan-prefixes/l3vpn-ntw:ipv6-lan-prefixes\" {\n        uses bfd-static-routes;",
       "createdAt": "2025-03-15T12:25:11Z",
-      "updatedAt": "2025-03-15T12:25:28Z",
+      "updatedAt": "2025-03-31T08:32:01Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "julianL999",
+          "authorAssociation": "NONE",
+          "body": "I spotted a typo miliseconds -> milliseconds",
+          "createdAt": "2025-03-31T08:32:01Z",
+          "updatedAt": "2025-03-31T08:32:01Z"
+        }
+      ]
     },
     {
       "number": 2,
@@ -196,6 +204,38 @@
       "body": "In the model, a RD must be always asigned via profile at service level. It is useful to be able to set a explicit RD directly at nodel level overriding the value of the profile. This way, a common profile can be used for the whole services for use cases where only RD changes per node. \n\nThe path were the leaf would be added.\n\"/l2vpn-ntw:l2vpn-ntw/l2vpn-ntw:vpn-services/l2vpn-ntw:vpn-service/l2vpn-ntw:vpn-nodes/l2vpn-ntw:vpn-node/\" \n+ \"l2vpn-ntw:active-global-parameters-profiles/l2vpn-ntw:global-parameters-profile\" {\n \n\tleaf rd {\n          type rt-types:route-distinguisher;\n          description\n            \"Indicates an RD value that is explicitly assigned.\";\n        }\n  }",
       "createdAt": "2025-03-18T03:25:50Z",
       "updatedAt": "2025-03-18T03:25:50Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOOJAfS86wa3la",
+      "title": "L2NM: add support for Flexible Cross-Connect (FXC) Service (RFC 9744)",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/8",
+      "state": "OPEN",
+      "author": "julianL999",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "It would be useful to add support for Flexible Cross-Connect (FXC) Service (RFC 9744)",
+      "createdAt": "2025-03-31T08:39:23Z",
+      "updatedAt": "2025-03-31T08:39:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOOJAfS86wa-gh",
+      "title": "L2NM: add explanatory text for EVPN multihoming using LAG",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/9",
+      "state": "OPEN",
+      "author": "julianL999",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "It would be good to have some explanatory text of how to achieve EVPN multihoming to two (or more PEs) using LAG. I assume that the association is achieved by using the same lag-interface-id on both PEs, but it would be good to explain this. \n\nvpn-node PE1 \n...\nvpn-network-access PE1-5\n...\nlag-interface-id ID22\n...\nmember-link ge-1/0/0\n\nvpn-node PE2 \n...\nvpn-network-access PE2-7\n...\nlag-interface-id ID22 <<< same id as on PE1\n...\nmember-link ge-2/0/0",
+      "createdAt": "2025-03-31T08:50:34Z",
+      "updatedAt": "2025-03-31T08:52:16Z",
       "closedAt": null,
       "comments": []
     }
