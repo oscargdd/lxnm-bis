@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-03T01:43:53.617081+00:00",
+  "timestamp": "2025-04-06T01:49:21.069185+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -114,7 +114,7 @@
     {
       "number": 3,
       "id": "I_kwDOOJAfS86uVx_S",
-      "title": "Missing blocks",
+      "title": "Missing blocks (position against Attachment Circuits)",
       "url": "https://github.com/oscargdd/lxnm-bis/issues/3",
       "state": "OPEN",
       "author": "sbarguil",
@@ -125,7 +125,7 @@
       ],
       "body": "Present now in the AC-Model but not in the L3NM:\n\n- BGP Peer group creation\n- BGP Redistribution rules\n- ACL pointer to attach forwarding filter",
       "createdAt": "2025-03-17T12:42:47Z",
-      "updatedAt": "2025-03-17T12:58:24Z",
+      "updatedAt": "2025-04-04T07:51:10Z",
       "closedAt": null,
       "comments": []
     },
