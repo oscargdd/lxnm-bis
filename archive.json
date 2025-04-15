@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-13T03:11:21.054837+00:00",
+  "timestamp": "2025-04-15T01:48:03.062524+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -236,6 +236,38 @@
       "body": "It would be good to have some explanatory text of how to achieve EVPN multihoming to two (or more PEs) using LAG. I assume that the association is achieved by using the same lag-interface-id on both PEs, but it would be good to explain this. \n\nvpn-node PE1 \n...\nvpn-network-access PE1-5\n...\nlag-interface-id **ID22**\n...\nmember-link ge-1/0/0\n\nvpn-node PE2 \n...\nvpn-network-access PE2-7\n...\nlag-interface-id **ID22** <<< same id as on PE1\n...\nmember-link ge-2/0/0",
       "createdAt": "2025-03-31T08:50:34Z",
       "updatedAt": "2025-04-02T08:46:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOOJAfS86yXV1L",
+      "title": "L2NM: support for vlan-lists/vlan-ranges",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/10",
+      "state": "OPEN",
+      "author": "julianL999",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "When defining a Layer 2 service, sometimes multiple VLANs are mapped into a given service. It would be good to support this in the L2NM encapsulation stanza. \n\nExamples:\n\n(i) typically used in single-tagged scenarios:\nvlan-id-list [ 200 210-219 222 234 240-249 ];\n\n\n(ii) dual-tagged scenario, with s-vlan=430 and a list of c-vlans:\nvlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ];\n\nI don't think we need to define tag translate operations for the lists shown above, I have not seen that deployed. ",
+      "createdAt": "2025-04-14T09:28:21Z",
+      "updatedAt": "2025-04-14T09:28:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOOJAfS86yXd7v",
+      "title": "L2NM: support for translate-push and pop-translate tag operations",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/11",
+      "state": "OPEN",
+      "author": "julianL999",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "I think that in the current version of the L2NM, translate-push and pop-translate are not supported. It would be useful to support them, for example:\n\ntranslate-push: packet arrives from CE with tag 101. This is swapped for tag 500 and then tag 400 is pushed on top.\n\npop-translate: packet arrives from CE with tag 100 on top and tag 200 underneath. Tag 100 is popped and tag 200 is swapped for tag 300.\n\n",
+      "createdAt": "2025-04-14T09:41:25Z",
+      "updatedAt": "2025-04-14T09:41:25Z",
       "closedAt": null,
       "comments": []
     }
