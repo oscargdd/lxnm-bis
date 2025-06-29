@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-26T01:55:03.929269+00:00",
+  "timestamp": "2025-06-29T02:06:03.451310+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -268,6 +268,24 @@
       "body": "I think that in the current version of the L2NM, translate-push and pop-translate are not supported. It would be useful to support them, for example:\n\ntranslate-push: packet arrives from CE with tag 101. This is swapped for tag 500 and then tag 400 is pushed on top.\n\npop-translate: packet arrives from CE with tag 100 on top and tag 200 underneath. Tag 100 is popped and tag 200 is swapped for tag 300.\n\n",
       "createdAt": "2025-04-14T09:41:25Z",
       "updatedAt": "2025-04-14T09:41:25Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOOJAfS869sJcN",
+      "title": "(SRv6 VPN) ZTE Implementation Feedback for L2NM/L3NM Models",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/12",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "L3NM"
+      ],
+      "body": "ZTE has implemented and deployed both L2NM (RFC 9291) and L3NM (draft-ietf-opsawg-l3sm-l3nm-08) YANG models in production with their customers.\n\nPreviously, L2SM and L3SM were also implemented, but are no longer evolving, as L2NM and L3NM now sufficiently meet customer requirements.\n\nNoted gap: SRv6 VPN is not currently supported by the existing models.\n\nReported by: Xiao Min",
+      "createdAt": "2025-06-27T11:27:43Z",
+      "updatedAt": "2025-06-27T11:27:43Z",
       "closedAt": null,
       "comments": []
     }
