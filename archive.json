@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-06T02:04:34.034414+00:00",
+  "timestamp": "2025-07-08T01:56:31.550386+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -281,11 +281,83 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
-        "L3NM"
+        "L3NM",
+        "L2NM"
       ],
       "body": "ZTE has implemented and deployed both L2NM (RFC 9291) and L3NM (draft-ietf-opsawg-l3sm-l3nm-08) YANG models in production with their customers.\n\nPreviously, L2SM and L3SM were also implemented, but are no longer evolving, as L2NM and L3NM now sufficiently meet customer requirements.\n\nNoted gap: SRv6 VPN is not currently supported by the existing models.\n\nReported by: Xiao Min",
       "createdAt": "2025-06-27T11:27:43Z",
-      "updatedAt": "2025-06-27T11:27:43Z",
+      "updatedAt": "2025-07-07T12:36:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOOJAfS86_Qzez",
+      "title": "LxNM Realization",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/13",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "L3NM",
+        "L2NM"
+      ],
+      "body": "4.\tMapping of LxNM against underlay infrastructure (RSVP-TE tunnel, SR-policy). This is covered in the \u201cservice-mapping\u201d draft in TEAS but before starting the implementation I had a chat with some operators (including some of our friends in CC \ud83d\ude03 ) and the general agreement was that an augmentation to LxNM models was more appropriate. \n\nReported by: Daniele & Sujay",
+      "createdAt": "2025-07-07T12:34:39Z",
+      "updatedAt": "2025-07-07T12:34:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOOJAfS86_Q0Jr",
+      "title": "L3NM Multicast",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/14",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "L3NM"
+      ],
+      "body": "3.\tFor L3VPN with multicast ,cisco  mvpn augmentation is added to include varios profiles ( ipmsi and spmsi ) , would have to be enabled across vendors to include standardized profiles. There is no official YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly.\n\nReported by: Daniele & Sujay",
+      "createdAt": "2025-07-07T12:35:17Z",
+      "updatedAt": "2025-07-07T12:35:26Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOOJAfS86_Q01r",
+      "title": "SRv6 Support",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/15",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "2.\tSRv6 Grouping in L2VPN and L3VPN , currently augmented and need to support srv6 locator preferences, address-family based SRv6 .",
+      "createdAt": "2025-07-07T12:35:59Z",
+      "updatedAt": "2025-07-07T12:35:59Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOOJAfS86_Q1l3",
+      "title": "Performance Monitoring",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/16",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "L2NM"
+      ],
+      "body": "1.\tITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC\u202f9291) doesn't natively include OAM specifics \n\nReported by: Daniele & Sujay",
+      "createdAt": "2025-07-07T12:36:46Z",
+      "updatedAt": "2025-07-07T12:36:46Z",
       "closedAt": null,
       "comments": []
     }
