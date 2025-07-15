@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-13T02:09:33.857064+00:00",
+  "timestamp": "2025-07-15T02:04:40.414687+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -362,5 +362,32 @@
       "comments": []
     }
   ],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 17,
+      "id": "PR_kwDOOJAfS86ew8sw",
+      "title": "Update and rename draft-todo-yourname-protocol.md to draft-bg-onions-\u2026",
+      "url": "https://github.com/oscargdd/lxnm-bis/pull/17",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "\u2026update-network-service-models.md",
+      "createdAt": "2025-07-14T09:30:40Z",
+      "updatedAt": "2025-07-14T09:30:40Z",
+      "baseRepository": "oscargdd/lxnm-bis",
+      "baseRefName": "main",
+      "baseRefOid": "d8c904fecec30c37a0acd31642e477fb943b3d52",
+      "headRepository": "oscargdd/lxnm-bis",
+      "headRefName": "draft-bg",
+      "headRefOid": "f88401bbf52db21752b7ce1eb39855047049e11b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
