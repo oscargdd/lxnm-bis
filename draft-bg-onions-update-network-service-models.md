@@ -20,7 +20,8 @@
 #
 ###
 title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+abbrev: "Update of Network Service Yang models"
+"
 category: info
 
 docname: draft-bg-onions-update-network-service-models-latest
@@ -45,9 +46,13 @@ venue:
 
 author:
  -
-    fullname: Your Name Here
+    fullname: Oscar Gonzalez de Dios
     organization: Your Organization Here
-    email: your.email@example.com
+    email: oscar.gonzalezdedios@telefonica.com
+-
+    fullname: Samier Barguil
+    organization: Nokia
+    email: oscar.gonzalezdedios@telefonica.com
 
 normative:
 
@@ -70,6 +75,14 @@ TODO Introduction
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
+
+# Observations and new requirements
+
+## Missing Features
+Implementations of LxNM models in controllers required new functionalities which were not covered in the RFCxxx yang models to deploy all the functionality required in the Operator services. This section compiles the functions that were reported by those implementations. 
+* BFD parametrization of static routes:
+  * The L3NM Yang data model allows to manage static routes in a VPN. The new requirement is the ability to specify BFD intented configuration in the IPv4 and IPv6 static routes.
+
 
 
 # Security Considerations
