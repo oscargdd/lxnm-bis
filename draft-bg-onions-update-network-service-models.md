@@ -50,13 +50,35 @@ The L2NM and L3NM Network Yang models have been implemented in recent years to f
 
 # Introduction
 
-The L2NM and L3NM Network Yang models have been implemented in recent years to facilate the deployment of Operator services. This document reports the findings from the implementations, deriving the functionalities required to update the Network Service Yang models. 
+Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} and L2NM {{RFC9291}} have been implemented in recent years to facilate the deployment of Operator services. This document reports the findings from the implementations, deriving the functionalities required to update the Network Service Yang models. 
 
+{{?RFC8969}} documents the automation framework. {{?RFC9315}} documents Intent-based networking from IRTF perspective, with specific problems which are addressable today after the first deployments have been done.
 
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
+# Network Service Yang Model Work in IETF
+
+   A number of IETF working groups have developed YANG modules related
+   to facilitate the deployement of services.  These models focus on 
+   how the network operator intents to configures the network through
+   protocols and devices to deliver a service. The intended configuration
+   at the device level is derived from those network Yang models. 
+   The customer service Yang models abstract the service for upper layers. The
+   intended network service configuration is derived from the the service model.
+   
+   A set of these models is listed here:
+
+   o  {{RFC defines a YANG module that can be used to
+      configure and manage BGP L3VPNs.
+
+   o  {{RFC 9291} documents a data model that describes the deployment of
+   various types of L2VPN, including VPWS and EVPNs
+
+   ## Related Yang models
+
+  
 # Observations and new requirements
 
 ## Missing Features
@@ -91,4 +113,4 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+The authors would like to acknowlede the implementors that provided feedback on the use of network service yang models.
