@@ -49,7 +49,7 @@ Network Service Yang models have been implemented in recent years to facilate th
 # Introduction
 
 
-Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} and L2NM {{RFC9291}} have been implemented in recent years to facilate the deployment of Operator services. This document reports the findings from the implementations, deriving the functionalities required to update the Network Service Yang models. 
+Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} and L2NM {{?RFC9291}} have been implemented in recent years to facilate the deployment of Operator services. This document reports the findings from the implementations, deriving the functionalities required to update the Network Service Yang models. 
 
 {{?RFC8969}} documents the automation framework. {{?RFC9315}} documents Intent-based networking from IRTF perspective, with specific problems which are addressable today after the first deployments have been done.
 
@@ -76,7 +76,7 @@ Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} a
    L3NM is a Network Model (L3NM) that can be used for the provisioning of 
    BGP based Layer 3 Virtual Private Network (L3VPN) services within a service provider network.
 
-   * {{RFC9291}} documents a data model that describes the deployment of
+   * {{?RFC9291}} documents a data model that describes the deployment of
    various types of L2VPN, including VPWS and BGP based L2VPN, such as EVPNs.
   
 # Observations and new requirements
@@ -99,7 +99,7 @@ Implementations of LxNM models in controllers required new functionalities which
 * EVPN Remote and Local eth-tag (Github issue #6)
 * Explicity asign a RD at node leve (Github issue #7)
      In the model, a RD must be always asigned via profile at service level. It is useful to be able to set a explicit RD directly at nodel level overriding the value of the profile. This way, a common profile can be used for the whole services for use cases where only RD changes per node.
-* Add support for Flexible Cross-Connect (FXC) Service ({{RFC9744}}) (Github issue #8)
+* Add support for Flexible Cross-Connect (FXC) Service ({{?RFC9744}}) (Github issue #8)
 * add explanatory text for EVPN multihoming using LAG (Github issue #9)
  
 ## Status of the intented Network Service. 
