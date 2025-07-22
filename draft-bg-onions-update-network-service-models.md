@@ -35,15 +35,12 @@ author:
 
 normative:
 
-
 informative:
 
-...
 
 --- abstract
 
-Network Service Yang models have been implemented in recent years to facilate the deployment of Operator services. This document reports the findings from the implementations, deriving the functionalities required to update the Network Service Yang models. 
-
+Network Service Yang models have been implemented in recent years to facilate the deployment of connectivity services in Service Provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks, operational issues and enhacements.
 
 --- middle
 
@@ -69,12 +66,12 @@ Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} a
    
    A set of these models is listed here:
 
-   o  {{RFC9182}} As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), 
+   * {{RFC9182}} As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), 
    which is used for communication between customers and service providers, 
    L3NM is a Network Model (L3NM) that can be used for the provisioning of 
    BGP based Layer 3 Virtual Private Network (L3VPN) services within a service provider network.
 
-   o  {{RFC 9291} documents a data model that describes the deployment of
+   *  {{RFC 9291} documents a data model that describes the deployment of
    various types of L2VPN, including VPWS and BGP based L2VPN, such as EVPNs.
 
    ## Related Yang models
