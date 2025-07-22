@@ -1,7 +1,6 @@
 ---
 title: "An Update of Network Service Yang models"
 abbrev: "Network Service models update"
-"
 category: info
 
 docname: draft-bg-onions-update-network-service-models-latest
@@ -10,8 +9,8 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+# area: AREA
+# workgroup: WG Working Group
 keyword:
  - next generation
  - unicorn
