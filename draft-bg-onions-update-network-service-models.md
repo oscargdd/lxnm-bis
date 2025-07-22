@@ -26,9 +26,9 @@ venue:
 author:
  -
     fullname: Oscar Gonzalez de Dios
-    organization: Your Organization Here
+    organization: Telefonica
     email: oscar.gonzalezdedios@telefonica.com
--
+ -
     fullname: Samier Barguil
     organization: Nokia
     email: samier.barguil_giraldo@nokia.com
@@ -37,18 +37,23 @@ normative:
 
 informative:
 
+...
 
 --- abstract
 
 Network Service Yang models have been implemented in recent years to facilate the deployment of connectivity services in Service Provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks, operational issues and enhacements.
 
+
 --- middle
 
 # Introduction
 
+
 Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} and L2NM {{RFC9291}} have been implemented in recent years to facilate the deployment of Operator services. This document reports the findings from the implementations, deriving the functionalities required to update the Network Service Yang models. 
 
 {{?RFC8969}} documents the automation framework. {{?RFC9315}} documents Intent-based networking from IRTF perspective, with specific problems which are addressable today after the first deployments have been done.
+
+
 
 # Conventions and Definitions
 
@@ -71,7 +76,7 @@ Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} a
    L3NM is a Network Model (L3NM) that can be used for the provisioning of 
    BGP based Layer 3 Virtual Private Network (L3VPN) services within a service provider network.
 
-   *  {{RFC 9291} documents a data model that describes the deployment of
+   * {{RFC9291}} documents a data model that describes the deployment of
    various types of L2VPN, including VPWS and BGP based L2VPN, such as EVPNs.
 
    ## Related Yang models
@@ -90,17 +95,17 @@ Implementations of LxNM models in controllers required new functionalities which
       * BGP Peer group creation
       * BGP Redistribution rules
   * Missing pointer to ACL (also present in Github issue #3).
-      * ACL pointer to attach forwarding filter    
+      * ACL pointer to attach forwarding filter
 
 ### L2NM enhancements
 * EVPN Remote and Local eth-tag (Github issue #6)
 * Explicity asign a RD at node leve (Github issue #7)
      In the model, a RD must be always asigned via profile at service level. It is useful to be able to set a explicit RD directly at nodel level overriding the value of the profile. This way, a common profile can be used for the whole services for use cases where only RD changes per node.
-* Add support for Flexible Cross-Connect (FXC) Service (RFC 9744) (Github issue #8)
+* Add support for Flexible Cross-Connect (FXC) Service ({{RFC9744}}) (Github issue #8)
 * add explanatory text for EVPN multihoming using LAG (Github issue #9)
 * 
 ## Status of the intented Network Service. 
-The Network Service Yang models represents an intent of the realization of service. A controller, after an instance of the network service yang intent has been created, will derive the necessary device level configurations and apply them to the necessary devices. However, the implementations reported a set of open issues which are related to the status. Those issues are not solved today and are left to implementation choices and solutions.  
+The Network Service Yang models represents an intent of the realization of service. A controller, after an instance of the network service yang intent has been created, will derive the necessary device level configurations and apply them to the necessary devices. However, the implementations reported a set of open issues which are related to the status. Those issues are not solved today and are left to implementation choices and solutions.
 
 * Is the Service running on the Network? (Github issue #5)
   * How can the northbound system be assured with 100% certainty that a configuration has been successfully installed on the network device?
@@ -112,6 +117,7 @@ The Network Service Yang models represents an intent of the realization of servi
 * Operative Status Clarification (Github issue #4)
    Understanding the interrelationships between the operational status of VPN services, VPN nodes, and VPN network access is another significant operational gap. The status of a VPN service may depend on the status of the underlying VPN nodes and the network access provided to the VPN.
    To address this gap, IETF should establish clear dependencies and correlations between the various operational statuses. This could involve defining specific criteria for determining the overall status of a VPN service based on the status of its constituent VPN nodes and network access components. Moreover, real-time monitoring and correlation of status information can provide insights into the health and performance of VPN services.
+
 
 # Security Considerations
 
@@ -128,4 +134,5 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to acknowlede the implementors that provided feedback on the use of network service yang models.
+TODO acknowledge.
+
