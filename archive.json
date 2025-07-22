@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-15T02:04:40.414687+00:00",
+  "timestamp": "2025-07-22T02:02:45.842406+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -360,6 +360,22 @@
       "updatedAt": "2025-07-07T12:36:46Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOOJAfS87BpL3W",
+      "title": "No network model for ACLs",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/18",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "VPN services often include mechanisms to filter forwarding packets. \n\nToday, the LxNM models allow to include a 'forwarding-profile-identifier'. A forwarding profile refers to the\n policies that apply to the forwarding of packets conveyed within a      VPN.  Such policies may consist, for example, of applying Access Control Lists (ACLs).\n\nHowever, currently there is not an ACL network service model (even though a device level ACL model exists). ",
+      "createdAt": "2025-07-21T14:02:57Z",
+      "updatedAt": "2025-07-21T14:02:57Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -375,13 +391,13 @@
       "labels": [],
       "body": "\u2026update-network-service-models.md",
       "createdAt": "2025-07-14T09:30:40Z",
-      "updatedAt": "2025-07-14T09:30:40Z",
+      "updatedAt": "2025-07-21T16:59:56Z",
       "baseRepository": "oscargdd/lxnm-bis",
       "baseRefName": "main",
       "baseRefOid": "d8c904fecec30c37a0acd31642e477fb943b3d52",
       "headRepository": "oscargdd/lxnm-bis",
       "headRefName": "draft-bg",
-      "headRefOid": "f88401bbf52db21752b7ce1eb39855047049e11b",
+      "headRefOid": "dbad3b55c77584932f1f358e52c80063cc8562f8",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
