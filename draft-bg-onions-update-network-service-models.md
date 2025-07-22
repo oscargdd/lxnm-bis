@@ -78,14 +78,12 @@ Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} a
 
    * {{RFC9291}} documents a data model that describes the deployment of
    various types of L2VPN, including VPWS and BGP based L2VPN, such as EVPNs.
-
-   ## Related Yang models
-
   
 # Observations and new requirements
 
 ## Enhancements with new features 
 Implementations of LxNM models in controllers required new functionalities which were not covered in the RFCxxx yang models to deploy all the functionality required in the Operator services. This section compiles the functions that were reported by those implementations. 
+
 ### L3NM enhancements
 * BFD parametrization of static routes (Github issue #1):
   * The L3NM Yang data model allows to manage static routes in a VPN. That is, for a particular VPN service, new Pv4 and IPv6 static routes can be added, modified or deleted. The data model allows to specify wether BFD is desired in the static route. Whenever a controller derives the device configuration of the static route it will need to decide a particular BFD configuration, typically from a pre-defined template. Operators required, for different services, to customize the main BFD parameters to allow, for example, faster detection for critical services. The new requirement is the ability to specify BFD intented configuration in the IPv4 and IPv6 static routes, including a required-min-rx-interval and multiplier.
@@ -103,7 +101,7 @@ Implementations of LxNM models in controllers required new functionalities which
      In the model, a RD must be always asigned via profile at service level. It is useful to be able to set a explicit RD directly at nodel level overriding the value of the profile. This way, a common profile can be used for the whole services for use cases where only RD changes per node.
 * Add support for Flexible Cross-Connect (FXC) Service ({{RFC9744}}) (Github issue #8)
 * add explanatory text for EVPN multihoming using LAG (Github issue #9)
-* 
+ 
 ## Status of the intented Network Service. 
 The Network Service Yang models represents an intent of the realization of service. A controller, after an instance of the network service yang intent has been created, will derive the necessary device level configurations and apply them to the necessary devices. However, the implementations reported a set of open issues which are related to the status. Those issues are not solved today and are left to implementation choices and solutions.
 
