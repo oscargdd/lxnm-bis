@@ -139,7 +139,7 @@ The Network Service Yang models represents an intent of the realization of servi
 
 ## Summary
 * L3NM and L2NM need to be updated to cover new technologies (such as SRv6), incomplete support (such as multicast) and enhancements.
-* New network yang models (such as ACLs and routing policies) 
+* New network YANG data models (such as ACLs and routing policies) 
 
 # Security Considerations
 
