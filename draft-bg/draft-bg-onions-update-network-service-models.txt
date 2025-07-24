@@ -114,7 +114,7 @@ Table of Contents
    services.  These modules focus on how the network operator intents to
    configures the network through protocols and devices to deliver a
    service.  The intended configuration at the device level is derived
-   from those network Yang models.  The customer service Yang models
+   from network YANG data models.  The customer service Yang models
    abstract the service for upper layers.  The intended network service
    configuration is derived from the the service model.
 
