@@ -138,7 +138,7 @@ The Network Service Yang models represents an intent of the realization of servi
    To address this gap, IETF should establish clear dependencies and correlations between the various operational statuses. This could involve defining specific criteria for determining the overall status of a VPN service based on the status of its constituent VPN nodes and network access components. Moreover, real-time monitoring and correlation of status information can provide insights into the health and performance of VPN services.
 
 ## Summary
-* L3NM and L2NM need to be updated to cover new technologies (such as SRv6), uncomplete support (such as multicast) and enhacemens
+* L3NM and L2NM need to be updated to cover new technologies (such as SRv6), incomplete support (such as multicast) and enhancements.
 * New network yang models (such as ACLs and routing policies) 
 
 # Security Considerations
