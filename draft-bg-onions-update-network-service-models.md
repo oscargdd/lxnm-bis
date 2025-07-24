@@ -1,6 +1,6 @@
 ---
 title: "An Update of Service and Network Data Models"
-abbrev: "Network Service models update"
+abbrev: "Service & Network Data Modes Update"
 category: info
 
 docname: draft-bg-onions-update-network-service-models-latest
