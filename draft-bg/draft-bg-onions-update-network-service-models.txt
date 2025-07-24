@@ -72,13 +72,15 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Network Service Yang Model Work in IETF
+   3.  Service and Network YANG Data Models in the ETF
    4.  Observations and new requirements
      4.1.  Enhancements to LxSM and LxNM
        4.1.1.  L3NM Enhancements
+       4.1.2.  L2NM Enhancements
      4.2.  New Functionalities Required to Fully Support Connectivity
            Services
-     4.3.  Summary
+     4.3.  Status of the Intended Network Service
+     4.4.  Summary
    5.  Security Considerations
    6.  IANA Considerations
    7.  References
@@ -109,14 +111,14 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Network Service Yang Model Work in IETF
+3.  Service and Network YANG Data Models in the ETF
 
-   A number of IETF working groups have developed YANG modules related
-   to foster the provisioning and, more generally, the deployment of
+   Several IETF Working Groups have developed YANG modules in order to
+   foster the provisioning and, more generally, the deployment of
    services.  These modules focus on how the network operator intents to
-   configures the network through protocols and devices to deliver a
-   service.  The intended configuration at the device level is derived
-   from network YANG data models.  The customer service YANG data models
+   manage a network through protocols and devices to deliver a service.
+   The intended configuration at the device level is derived from
+   network YANG data models.  The customer service YANG data models
    abstract the service for upper layers.  The intended network service
    configuration is derived from the the service model.
 
@@ -138,10 +140,9 @@ Table of Contents
 4.1.  Enhancements to LxSM and LxNM
 
    Implementations of LxNM models in controllers required new
-   functionalities which were not covered in the RFCxxx yang models to
-   deploy all the functionality required in the Operator services.  This
-   section compiles the functions that were reported by those
-   implementations.
+   functionalities which were not covered [RFC9182] and [RFC9291] to
+   deploy the missing functions in the Operator services.  This section
+   compiles the functions that were reported by those implementations.
 
 4.1.1.  L3NM Enhancements
 
@@ -188,8 +189,9 @@ Table of Contents
          Cisco MVPN augmentation were added to include various profiles
          ( ipmsi and spmsi ) . There is YANG module from IETF as of
          today that supports full MVPN/SPMSI/IPMSI under L3NM directly.
-         Standardized profiles are required to be added.  ### L2NM
-         enhancements
+         Standardized profiles are required to be added.
+
+4.1.2.  L2NM Enhancements
 
    *  EVPN Remote and Local eth-tag (Github issue #6)
 
@@ -248,14 +250,16 @@ Table of Contents
    There are a set a device models which could be used as a base for the
    network model. * Pre and post checks: * Preparation of the interface.
    Prior to setting up .
-   ## Status of the intented Network Service.  The Network Service Yang
-   models represents an intent of the realization of service.  A
-   controller, after an instance of the network service yang intent has
-   been created, will derive the necessary device level configurations
-   and apply them to the necessary devices.  However, the
-   implementations reported a set of open issues which are related to
-   the status.  Those issues are not solved today and are left to
-   implementation choices and solutions.
+
+4.3.  Status of the Intended Network Service
+
+   The Network Service Yang models represents an intent of the
+   realization of service.  A controller, after an instance of the
+   network service yang intent has been created, will derive the
+   necessary device level configurations and apply them to the necessary
+   devices.  However, the implementations reported a set of open issues
+   which are related to the status.  Those issues are not solved today
+   and are left to implementation choices and solutions.
 
    *  Is the Service running on the Network?  (Github issue #5)
 
@@ -293,7 +297,7 @@ Table of Contents
       information can provide insights into the health and performance
       of VPN services.
 
-4.3.  Summary
+4.4.  Summary
 
    *  L3NM and L2NM need to be updated to cover new technologies (such
       as SRv6), incomplete support (such as multicast) and enhancements.
@@ -321,6 +325,16 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
+   [RFC9182]  Barguil, S., Gonzalez de Dios, O., Ed., Boucadair, M.,
+              Ed., Munoz, L., and A. Aguado, "A YANG Network Data Model
+              for Layer 3 VPNs", RFC 9182, DOI 10.17487/RFC9182,
+              February 2022, <https://www.rfc-editor.org/rfc/rfc9182>.
+
+   [RFC9291]  Boucadair, M., Ed., Gonzalez de Dios, O., Ed., Barguil,
+              S., and L. Munoz, "A YANG Network Data Model for Layer 2
+              VPNs", RFC 9291, DOI 10.17487/RFC9291, September 2022,
+              <https://www.rfc-editor.org/rfc/rfc9291>.
+
 7.2.  Informative References
 
    [RFC8199]  Bogdanovic, D., Claise, B., and C. Moberg, "YANG Module
@@ -336,21 +350,11 @@ Table of Contents
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
 
-   [RFC9182]  Barguil, S., Gonzalez de Dios, O., Ed., Boucadair, M.,
-              Ed., Munoz, L., and A. Aguado, "A YANG Network Data Model
-              for Layer 3 VPNs", RFC 9182, DOI 10.17487/RFC9182,
-              February 2022, <https://www.rfc-editor.org/rfc/rfc9182>.
-
    [RFC9252]  Dawra, G., Ed., Talaulikar, K., Ed., Raszuk, R., Decraene,
               B., Zhuang, S., and J. Rabadan, "BGP Overlay Services
               Based on Segment Routing over IPv6 (SRv6)", RFC 9252,
               DOI 10.17487/RFC9252, July 2022,
               <https://www.rfc-editor.org/rfc/rfc9252>.
-
-   [RFC9291]  Boucadair, M., Ed., Gonzalez de Dios, O., Ed., Barguil,
-              S., and L. Munoz, "A YANG Network Data Model for Layer 2
-              VPNs", RFC 9291, DOI 10.17487/RFC9291, September 2022,
-              <https://www.rfc-editor.org/rfc/rfc9291>.
 
    [RFC9315]  Clemm, A., Ciavaglia, L., Granville, L. Z., and J.
               Tantsura, "Intent-Based Networking - Concepts and
