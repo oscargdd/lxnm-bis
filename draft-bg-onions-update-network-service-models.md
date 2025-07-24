@@ -85,7 +85,8 @@ Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 
 
 Implementations of LxNM models in controllers required new functionalities which were not covered in the RFCxxx yang models to deploy all the functionality required in the Operator services. This section compiles the functions that were reported by those implementations. 
 
-### L3NM enhancements
+### L3NM Enhancements
+
 * BFD parametrization of static routes (Github issue #1):
   * The L3NM Yang data model allows to manage static routes in a VPN. That is, for a particular VPN service, new Pv4 and IPv6 static routes can be added, modified or deleted. The data model allows to specify wether BFD is desired in the static route. Whenever a controller derives the device configuration of the static route it will need to decide a particular BFD configuration, typically from a pre-defined template. Operators required, for different services, to customize the main BFD parameters to allow, for example, faster detection for critical services. The new requirement is the ability to specify BFD intented configuration in the IPv4 and IPv6 static routes, including a required-min-rx-interval and multiplier.
 * Management of VLAN 0 in tagged interfaces (Github issue #2): LxNM Yang models have a range defined for cvlan between 1 and 4094. VLAN 0 should also be supported and is used in deployments.
