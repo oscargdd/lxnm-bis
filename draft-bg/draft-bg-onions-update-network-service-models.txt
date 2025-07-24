@@ -296,7 +296,7 @@ Table of Contents
 4.3.  Summary
 
    *  L3NM and L2NM need to be updated to cover new technologies (such
-      as SRv6), uncomplete support (such as multicast) and enhacemens
+      as SRv6), incomplete support (such as multicast) and enhancements.
 
    *  New network yang models (such as ACLs and routing policies)
 
