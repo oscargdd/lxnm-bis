@@ -10,18 +10,18 @@ date:
 consensus: true
 v: 3
 # area: AREA
-workgroup: ONIONS
+# workgroup: ONIONS
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: ONIONS
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+#  group: ONIONS
+#  type: Working Group
+#  mail: WG@example.com
+#  arch: https://example.com/WG
+  github: "oscargdd/lxnm-bis"
+  latest: "https://oscargdd.github.io/lxnm-bis/draft-bg-onions-update-network-service-models.html"
 
 author:
  -
@@ -49,7 +49,7 @@ Service & Network  data models have been implemented in recent years to facilita
 # Introduction
 
 
-Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 3 Network Model (L3NM) {{?RFC9182}} and the Layer 2 Network Model (L2NM) {{?RFC9291}} have been implemented to automate the deployment of VPN services by providers. This document reports the findings from the implementations, deriving the functionalities required to update the Service and Network YANG data models. 
+Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 3 Network Model (L3NM) {{?RFC9182}} and the Layer 2 Network Model (L2NM) {{?RFC9291}} have been implemented to automate the deployment of VPN services by providers. This document reports the findings from the implementations, deriving the functionalities required to update the Service and Network YANG data models.
 
 {{?RFC8969}} documents the automation framework. {{?RFC9315}} documents Intent-based networking from IRTF perspective, with specific problems which are addressable today after the first deployments have been done.
 
@@ -62,28 +62,28 @@ Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 
 # Service and Network YANG Data Models in the ETF
 
   Several IETF Working Groups have developed YANG modules in order
-   to foster the provisioning and, more generally, the deployment of services.  These modules focus on 
+   to foster the provisioning and, more generally, the deployment of services.  These modules focus on
    how the network operator intents to manage a network through
    protocols and devices to deliver a service. The intended configuration
-   at the device level is derived from network YANG data models. 
+   at the device level is derived from network YANG data models.
    The customer service YANG data models abstract the service for upper layers. The
    intended network service configuration is derived from the the service model.
-   
+
    A set of these models is listed here:
 
-   * {{RFC9182}} As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), 
-   which is used for communication between customers and service providers, 
-   L3NM is a Network Model (L3NM) that can be used for the provisioning of 
+   * {{RFC9182}} As a complement to the Layer 3 Virtual Private Network Service Model (L3SM),
+   which is used for communication between customers and service providers,
+   L3NM is a Network Model (L3NM) that can be used for the provisioning of
    BGP based Layer 3 Virtual Private Network (L3VPN) services within a service provider network.
 
    * {{?RFC9291}} documents a data model that describes the deployment of
    various types of L2VPN, including VPWS and BGP based L2VPN, such as EVPNs.
-  
+
 # Observations and new requirements
 
 ## Enhancements to LxSM and LxNM
 
-Implementations of LxNM models in controllers required new functionalities which were not covered {{!RFC9182}} and {{!RFC9291}} to deploy the missing functions in the Operator services. This section compiles the functions that were reported by those implementations. 
+Implementations of LxNM models in controllers required new functionalities which were not covered {{!RFC9182}} and {{!RFC9291}} to deploy the missing functions in the Operator services. This section compiles the functions that were reported by those implementations.
 
 ### L3NM Enhancements
 
@@ -98,7 +98,7 @@ Implementations of LxNM models in controllers required new functionalities which
       * ACL pointer to attach forwarding filter
 * SRv6 support for L3VPN (issue #15): SRv6-based BGP services including L3VPN, whose procedures are defined in {{?RFC9252}}
 * Improving Multicast Support:
-   * For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles ( ipmsi and spmsi ) . There is YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added. 
+   * For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles ( ipmsi and spmsi ) . There is YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added.
 
 ### L2NM Enhancements
 
@@ -115,16 +115,16 @@ Implementations of LxNM models in controllers required new functionalities which
 * Performance monitoring
    * ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC 9291) doesn't natively include OAM specifics
 
-## New Functionalities Required to Fully Support Connectivity Services 
+## New Functionalities Required to Fully Support Connectivity Services
 
 The realization of advance connectivity services requires, in addition to the configurations expressed in LxNM models:
 * Definition of Access Control lists and prefix Sets:
    *Connectivity services often include mechanisms to filter forwarding packets. The LxNM models allow to include a 'forwarding-profile-identifier'. A forwarding profile refers to the policies that apply to the forwarding of packets conveyed within a VPN. Such policies may consist, for example, of applying Access Control Lists (ACLs). However, currently there is not an ACL network service model (even though a device level ACL model exists) that allows to manipulate such ACLs and sets when creating the service.
-  * ACLs and Prefix sets can be reused among services. Thus, they need to be handled at a network level, regardless of the actual service using them. 
+  * ACLs and Prefix sets can be reused among services. Thus, they need to be handled at a network level, regardless of the actual service using them.
 * Definition of routing policies, including community sets, as path sets, etc:
    * Advance connectivity services require the creation of complex policies. The LxNM models allows to indicate which policy (or policies) should be used. However, LxNM does not include the definition of policies. There are a set a device models which could be used as a base for the network model.
 * Pre and post checks:
-* Preparation of the interface. Prior to setting up .       
+* Preparation of the interface. Prior to setting up .
 
 ## Status of the Intended Network Service
 
@@ -144,7 +144,7 @@ The Network Service Yang models represents an intent of the realization of servi
 ## Summary
 
 * L3NM and L2NM need to be updated to cover new technologies (such as SRv6), incomplete support (such as multicast) and enhancements.
-* New network YANG data models (such as ACLs and routing policies) 
+* New network YANG data models (such as ACLs and routing policies)
 
 # Security Considerations
 
