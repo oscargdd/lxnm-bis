@@ -112,7 +112,9 @@ Implementations of LxNM models in controllers required new functionalities which
 * SRv6 support for L2VPN (issue #15)
 * Performance monitoring
    * ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC 9291) doesn't natively include OAM specifics
-## New functionalities required to fully support connectivity services 
+
+## New Functionalities Required to Fully Support Connectivity Services 
+
 The realization of advance connectivity services requires, in addition to the configurations expressed in LxNM models:
 * Definition of Access Control lists and prefix Sets:
    *Connectivity services often include mechanisms to filter forwarding packets. The LxNM models allow to include a 'forwarding-profile-identifier'. A forwarding profile refers to the policies that apply to the forwarding of packets conveyed within a VPN. Such policies may consist, for example, of applying Access Control Lists (ACLs). However, currently there is not an ACL network service model (even though a device level ACL model exists) that allows to manipulate such ACLs and sets when creating the service.
