@@ -74,7 +74,7 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Network Service Yang Model Work in IETF
    4.  Observations and new requirements
-     4.1.  Enhancements with new features
+     4.1.  Enhancements to LxSM and LxNM
        4.1.1.  L3NM enhancements
      4.2.  Summary
    5.  Security Considerations
@@ -133,7 +133,7 @@ Table of Contents
 
 4.  Observations and new requirements
 
-4.1.  Enhancements with new features
+4.1.  Enhancements to LxSM and LxNM
 
    Implementations of LxNM models in controllers required new
    functionalities which were not covered in the RFCxxx yang models to
