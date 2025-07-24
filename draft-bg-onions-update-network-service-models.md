@@ -49,7 +49,7 @@ Service & Network  data models have been implemented in recent years to facilita
 # Introduction
 
 
-Network Service Yang models {{?RFC8199}}{{?RFC8309}} such as L3NM {{?RFC9182}} and L2NM {{?RFC9291}} have been implemented in recent years to facilate the deployment of Operator services. This document reports the findings from the implementations, deriving the functionalities required to update the Network Service Yang models. 
+Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 3 Network Model (L3NM) {{?RFC9182}} and the Layer 2 Network Model (L2NM) {{?RFC9291}} have been implemented to automate the deployment of VPN services by providers. This document reports the findings from the implementations, deriving the functionalities required to update the Service and Network YANG data models. 
 
 {{?RFC8969}} documents the automation framework. {{?RFC9315}} documents Intent-based networking from IRTF perspective, with specific problems which are addressable today after the first deployments have been done.
 
