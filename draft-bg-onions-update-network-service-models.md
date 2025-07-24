@@ -62,7 +62,7 @@ Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 
 # Network Service Yang Model Work in IETF
 
    A number of IETF working groups have developed YANG modules related
-   to facilitate the deployement of services.  These models focus on 
+   to foster the provisioning and, more generally, the deployment of services.  These modules focus on 
    how the network operator intents to configures the network through
    protocols and devices to deliver a service. The intended configuration
    at the device level is derived from those network Yang models. 
