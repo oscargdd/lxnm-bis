@@ -59,11 +59,11 @@ Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 
 
 {::boilerplate bcp14-tagged}
 
-# Network Service Yang Model Work in IETF
+# Service and Network YANG Data Models in the ETF
 
-   A number of IETF working groups have developed YANG modules related
+  Several IETF Working Groups have developed YANG modules in order
    to foster the provisioning and, more generally, the deployment of services.  These modules focus on 
-   how the network operator intents to configures the network through
+   how the network operator intents to manage a network through
    protocols and devices to deliver a service. The intended configuration
    at the device level is derived from network YANG data models. 
    The customer service YANG data models abstract the service for upper layers. The
@@ -83,7 +83,7 @@ Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 
 
 ## Enhancements to LxSM and LxNM
 
-Implementations of LxNM models in controllers required new functionalities which were not covered in the RFCxxx yang models to deploy all the functionality required in the Operator services. This section compiles the functions that were reported by those implementations. 
+Implementations of LxNM models in controllers required new functionalities which were not covered {{!RFC9182}} and {{!RFC9291}} to deploy the missing functions in the Operator services. This section compiles the functions that were reported by those implementations. 
 
 ### L3NM Enhancements
 
@@ -99,7 +99,9 @@ Implementations of LxNM models in controllers required new functionalities which
 * SRv6 support for L3VPN (issue #15): SRv6-based BGP services including L3VPN, whose procedures are defined in {{?RFC9252}}
 * Improving Multicast Support:
    * For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles ( ipmsi and spmsi ) . There is YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added. 
-### L2NM enhancements
+
+### L2NM Enhancements
+
 * EVPN Remote and Local eth-tag (Github issue #6)
 * Explicity asign a RD at node leve (Github issue #7)
      In the model, a RD must be always asigned via profile at service level. It is useful to be able to set a explicit RD directly at nodel level overriding the value of the profile. This way, a common profile can be used for the whole services for use cases where only RD changes per node.
@@ -123,7 +125,9 @@ The realization of advance connectivity services requires, in addition to the co
    * Advance connectivity services require the creation of complex policies. The LxNM models allows to indicate which policy (or policies) should be used. However, LxNM does not include the definition of policies. There are a set a device models which could be used as a base for the network model.
 * Pre and post checks:
 * Preparation of the interface. Prior to setting up .       
-## Status of the intented Network Service. 
+
+## Status of the Intended Network Service
+
 The Network Service Yang models represents an intent of the realization of service. A controller, after an instance of the network service yang intent has been created, will derive the necessary device level configurations and apply them to the necessary devices. However, the implementations reported a set of open issues which are related to the status. Those issues are not solved today and are left to implementation choices and solutions.
 
 * Is the Service running on the Network? (Github issue #5)
@@ -138,6 +142,7 @@ The Network Service Yang models represents an intent of the realization of servi
    To address this gap, IETF should establish clear dependencies and correlations between the various operational statuses. This could involve defining specific criteria for determining the overall status of a VPN service based on the status of its constituent VPN nodes and network access components. Moreover, real-time monitoring and correlation of status information can provide insights into the health and performance of VPN services.
 
 ## Summary
+
 * L3NM and L2NM need to be updated to cover new technologies (such as SRv6), incomplete support (such as multicast) and enhancements.
 * New network YANG data models (such as ACLs and routing policies) 
 
