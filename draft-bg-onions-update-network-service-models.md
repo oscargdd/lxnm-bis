@@ -1,5 +1,5 @@
 ---
-title: "An Update of Network Service Yang models"
+title: "An Update of Service and Network Data Models"
 abbrev: "Network Service models update"
 category: info
 
