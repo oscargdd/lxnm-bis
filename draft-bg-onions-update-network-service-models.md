@@ -65,7 +65,7 @@ Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 
    to foster the provisioning and, more generally, the deployment of services.  These modules focus on 
    how the network operator intents to configures the network through
    protocols and devices to deliver a service. The intended configuration
-   at the device level is derived from those network Yang models. 
+   at the device level is derived from network YANG data models. 
    The customer service Yang models abstract the service for upper layers. The
    intended network service configuration is derived from the the service model.
    
