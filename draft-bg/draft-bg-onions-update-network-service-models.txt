@@ -5,11 +5,11 @@
 Network Working Group                                      O. G. D. Dios
 Internet-Draft                                                Telefonica
 Intended status: Informational                                S. Barguil
-Expires: 23 January 2026                                           Nokia
-                                                            22 July 2025
+Expires: 25 January 2026                                           Nokia
+                                                            24 July 2025
 
 
-                An Update of Network Service Yang models
+              An Update of Service and Network Data Models
           draft-bg-onions-update-network-service-models-latest
 
 Abstract
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 January 2026.
+   This Internet-Draft will expire on 25 January 2026.
 
 Copyright Notice
 
