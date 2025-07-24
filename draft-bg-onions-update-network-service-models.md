@@ -81,7 +81,8 @@ Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 
   
 # Observations and new requirements
 
-## Enhancements with new features 
+## Enhancements to LxSM and LxNM
+
 Implementations of LxNM models in controllers required new functionalities which were not covered in the RFCxxx yang models to deploy all the functionality required in the Operator services. This section compiles the functions that were reported by those implementations. 
 
 ### L3NM enhancements
