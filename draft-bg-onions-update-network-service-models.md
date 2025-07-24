@@ -66,7 +66,7 @@ Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 
    how the network operator intents to configures the network through
    protocols and devices to deliver a service. The intended configuration
    at the device level is derived from network YANG data models. 
-   The customer service Yang models abstract the service for upper layers. The
+   The customer service YANG data models abstract the service for upper layers. The
    intended network service configuration is derived from the the service model.
    
    A set of these models is listed here:
