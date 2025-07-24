@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-22T02:02:45.842406+00:00",
+  "timestamp": "2025-07-24T02:02:51.014721+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -336,10 +336,14 @@
       "author": "sbarguil",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "enhancement",
+        "L3NM",
+        "L2NM"
+      ],
       "body": "2.\tSRv6 Grouping in L2VPN and L3VPN , currently augmented and need to support srv6 locator preferences, address-family based SRv6 .",
       "createdAt": "2025-07-07T12:35:59Z",
-      "updatedAt": "2025-07-07T12:35:59Z",
+      "updatedAt": "2025-07-22T15:21:48Z",
       "closedAt": null,
       "comments": []
     },
@@ -391,19 +395,154 @@
       "labels": [],
       "body": "\u2026update-network-service-models.md",
       "createdAt": "2025-07-14T09:30:40Z",
-      "updatedAt": "2025-07-21T16:59:56Z",
+      "updatedAt": "2025-07-22T16:51:27Z",
       "baseRepository": "oscargdd/lxnm-bis",
       "baseRefName": "main",
       "baseRefOid": "d8c904fecec30c37a0acd31642e477fb943b3d52",
       "headRepository": "oscargdd/lxnm-bis",
       "headRefName": "draft-bg",
-      "headRefOid": "dbad3b55c77584932f1f358e52c80063cc8562f8",
+      "headRefOid": "7e57e9e0f5f8e23c1a2c0519c66907ff96fcf66b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOJAfS861bX9_",
+          "commit": {
+            "abbreviatedOid": "7e57e9e"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Please find some proposed edits. Thank you for the effort.",
+          "createdAt": "2025-07-22T16:29:42Z",
+          "updatedAt": "2025-07-22T16:51:27Z",
+          "comments": [
+            {
+              "originalPosition": 2,
+              "body": "```suggestion\r\ntitle: \"An Update of Service and Network Data Models\"\r\n```",
+              "createdAt": "2025-07-22T16:29:42Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 3,
+              "body": "```suggestion\r\nabbrev: \"Service & Network Data Modes Update\"\r\n```",
+              "createdAt": "2025-07-22T16:30:18Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\nworkgroup: ONIONS\r\n```",
+              "createdAt": "2025-07-22T16:30:38Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\nService & Network  data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in  provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks, operational issues and enhancements.\r\n```",
+              "createdAt": "2025-07-22T16:32:06Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 52,
+              "body": "```suggestion\r\nService and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 3 Network Model (L3NM) {{?RFC9182}} and the Layer 2 Network Model (L2NM) {{?RFC9291}} have been implemented to automate the deployment of VPN services by providers. This document reports the findings from the implementations, deriving the functionalities required to update the Service and Network YANG data models. \r\n```",
+              "createdAt": "2025-07-22T16:33:50Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 62,
+              "body": "```suggestion\r\n# Service and Network YANG Data Models in the ETF\r\n```",
+              "createdAt": "2025-07-22T16:40:10Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 64,
+              "body": "```suggestion\r\n  Several IETF Working Groups have developed YANG modules in order\r\n```",
+              "createdAt": "2025-07-22T16:40:39Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 65,
+              "body": "```suggestion\r\n   to foster the provisioning and, more generally, the deployment of services.  These modules focus on \r\n```",
+              "createdAt": "2025-07-22T16:41:52Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 66,
+              "body": "```suggestion\r\n   how the network operator intents to manage a network through\r\n```",
+              "createdAt": "2025-07-22T16:42:14Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 68,
+              "body": "```suggestion\r\n   at the device level is derived from network YANG data models. \r\n```",
+              "createdAt": "2025-07-22T16:42:43Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 69,
+              "body": "```suggestion\r\n   The customer service YANG data models abstract the service for upper layers. The\r\n```",
+              "createdAt": "2025-07-22T16:43:01Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 84,
+              "body": "```suggestion\r\n## Enhancements to LxSM and LxNM\r\n\r\n```",
+              "createdAt": "2025-07-22T16:44:53Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 85,
+              "body": "```suggestion\r\nImplementations of LxNM models in controllers required new functionalities which were not covered {{!RFC9182}} and {{!RFC9291}} to deploy the missing functions in the Operator services. This section compiles the functions that were reported by those implementations. \r\n```",
+              "createdAt": "2025-07-22T16:46:37Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 87,
+              "body": "```suggestion\r\n### L3NM Enhancements\r\n\r\n```",
+              "createdAt": "2025-07-22T16:46:53Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 100,
+              "body": "```suggestion\r\n\r\n### L2NM Enhancements\r\n\r\n```",
+              "createdAt": "2025-07-22T16:47:18Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 113,
+              "body": "```suggestion\r\n\r\n## New Functionalities Required to Fully Support Connectivity Services \r\n\r\n```",
+              "createdAt": "2025-07-22T16:48:03Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 122,
+              "body": "```suggestion\r\n\r\n## Status of the Intended Network Service\r\n\r\n```",
+              "createdAt": "2025-07-22T16:48:35Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 136,
+              "body": "```suggestion\r\n## Summary\r\n\r\n```",
+              "createdAt": "2025-07-22T16:48:53Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 137,
+              "body": "```suggestion\r\n* L3NM and L2NM need to be updated to cover new technologies (such as SRv6), incomplete support (such as multicast) and enhancements.\r\n```",
+              "createdAt": "2025-07-22T16:49:15Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            },
+            {
+              "originalPosition": 138,
+              "body": "```suggestion\r\n* New network YANG data models (such as ACLs and routing policies) \r\n```",
+              "createdAt": "2025-07-22T16:49:32Z",
+              "updatedAt": "2025-07-22T16:51:27Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
