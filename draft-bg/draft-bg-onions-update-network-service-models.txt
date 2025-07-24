@@ -110,13 +110,13 @@ Table of Contents
 3.  Network Service Yang Model Work in IETF
 
    A number of IETF working groups have developed YANG modules related
-   to facilitate the deployement of services.  These models focus on how
-   the network operator intents to configures the network through
-   protocols and devices to deliver a service.  The intended
-   configuration at the device level is derived from those network Yang
-   models.  The customer service Yang models abstract the service for
-   upper layers.  The intended network service configuration is derived
-   from the the service model.
+   to foster the provisioning and, more generally, the deployment of
+   services.  These modules focus on how the network operator intents to
+   configures the network through protocols and devices to deliver a
+   service.  The intended configuration at the device level is derived
+   from those network Yang models.  The customer service Yang models
+   abstract the service for upper layers.  The intended network service
+   configuration is derived from the the service model.
 
    A set of these models is listed here:
 
