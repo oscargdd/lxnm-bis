@@ -41,7 +41,7 @@ informative:
 
 --- abstract
 
-Network Service Yang models have been implemented in recent years to facilate the deployment of connectivity services in Service Provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks, operational issues and enhacements.
+Service & Network  data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in  provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks, operational issues and enhancements.
 
 
 --- middle
