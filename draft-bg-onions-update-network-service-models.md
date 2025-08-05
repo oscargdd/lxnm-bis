@@ -41,28 +41,25 @@ informative:
 
 --- abstract
 
-Service & Network  data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in  provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks, operational issues and enhancements.
+Service & Network data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks alligment against recent network models published, operational issues/limitatations and enhancements.
 
 
 --- middle
 
 # Introduction
 
-
 Service and Network YANG data models {{?RFC8199}}{{?RFC8309}} such as the Layer 3 Network Model (L3NM) {{?RFC9182}} and the Layer 2 Network Model (L2NM) {{?RFC9291}} have been implemented to automate the deployment of VPN services by providers. This document reports the findings from the implementations, deriving the functionalities required to update the Service and Network YANG data models.
 
 {{?RFC8969}} documents the automation framework. {{?RFC9315}} documents Intent-based networking from IRTF perspective, with specific problems which are addressable today after the first deployments have been done.
-
-
 
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
-# Service and Network YANG Data Models in the ETF
+# Service and Network YANG Data Models in the IETF
 
   Several IETF Working Groups have developed YANG modules in order
-   to foster the provisioning and, more generally, the deployment of services.  These modules focus on
+   to foster the provisioning and, more generally, the deployment of services. These modules focus on
    how the network operator intents to manage a network through
    protocols and devices to deliver a service. The intended configuration
    at the device level is derived from network YANG data models.
