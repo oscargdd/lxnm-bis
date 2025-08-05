@@ -185,8 +185,8 @@ Table of Contents
 
       -  For L3VPN with multicast, one implementation has reported that
          Cisco MVPN augmentation were added to include various profiles
-         ( ipmsi and spmsi ) . There is YANG module from IETF as of
-         today that supports full MVPN/SPMSI/IPMSI under L3NM directly.
+         (ipmsi and spmsi).  There is YANG module from IETF as of today
+         that supports full MVPN/SPMSI/IPMSI under L3NM directly.
          Standardized profiles are required to be added.
 
 4.1.2.  L2NM Enhancements
