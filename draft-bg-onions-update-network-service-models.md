@@ -95,7 +95,7 @@ Implementations of LxNM models in controllers required new functionalities which
       * ACL pointer to attach forwarding filter
 * SRv6 support for L3VPN (issue #15): SRv6-based BGP services including L3VPN, whose procedures are defined in {{?RFC9252}}
 * Improving Multicast Support:
-   * For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles ( ipmsi and spmsi ) . There is YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added.
+   * For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles (ipmsi and spmsi). There is YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added.
 
 ### L2NM Enhancements
 
