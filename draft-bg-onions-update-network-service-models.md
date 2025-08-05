@@ -12,9 +12,9 @@ v: 3
 # area: AREA
 # workgroup: ONIONS
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - Network Models
+ - L3NM
+ - L2NM
 venue:
 #  group: ONIONS
 #  type: Working Group
@@ -106,11 +106,11 @@ Implementations of LxNM models in controllers required new functionalities which
 * add explanatory text for EVPN multihoming using LAG (Github issue #9)
 * support for vlan-lists/vlan-ranges (Github issue #10)
     When defining a Layer 2 service, sometimes multiple VLANs are mapped into a given service. It would be good to support this in the L2NM encapsulation stanza. Examples:
-    * (i) typically used in single-tagged scenarios: vlan-id-list [ 200 210-219 222 234 240-249 ];
+    * (i) typically used in single-tagged scenarios: vlan-id-list [200 210-219 222 234 240-249];
     * (ii) dual-tagged scenario, with s-vlan=430 and a list of c-vlans: vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ];
 * SRv6 support for L2VPN (issue #15)
 * Performance monitoring
-   * ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC 9291) doesn't natively include OAM specifics
+   * ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC9291) doesn't natively include OAM specifics
 
 ## New Functionalities Required to Fully Support Connectivity Services
 
