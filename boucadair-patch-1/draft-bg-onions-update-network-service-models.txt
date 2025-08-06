@@ -5,8 +5,8 @@
 Network Working Group                                      O. G. D. Dios
 Internet-Draft                                                Telefonica
 Intended status: Informational                                S. Barguil
-Expires: 6 February 2026                                           Nokia
-                                                           5 August 2025
+Expires: 7 February 2026                                           Nokia
+                                                           6 August 2025
 
 
            An Update of Service and Network YANG Data Models
@@ -18,7 +18,8 @@ Abstract
    to facilitate the deployment of connectivity services such as Layer 2
    and Layer 3 VPN services in provider networks.  This document reports
    the findings from the implementations, including missing
-   functionalities, configuration blocks, operational issues and
+   functionalities, configuration blocks alligment against recent
+   network models published, operational issues/limitatations and
    enhancements.
 
 About This Document
@@ -49,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 February 2026.
+   This Internet-Draft will expire on 7 February 2026.
 
 Copyright Notice
 
@@ -69,7 +70,7 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Service and Network YANG Data Models in the ETF
+   3.  Service and Network YANG Data Models in the IETF
    4.  Observations and new requirements
      4.1.  Enhancements to LxSM and LxNM
        4.1.1.  L3NM Enhancements
@@ -108,7 +109,7 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Service and Network YANG Data Models in the ETF
+3.  Service and Network YANG Data Models in the IETF
 
    Several IETF Working Groups have developed YANG modules in order to
    foster the provisioning and, more generally, the deployment of
@@ -203,7 +204,7 @@ Table of Contents
    *  Add support for Flexible Cross-Connect (FXC) Service ([RFC9744])
       (Github issue #8)
 
-   *  add explanatory text for EVPN multihoming using LAG (Github issue
+   *  Add explanatory text for EVPN multihoming using LAG (Github issue
       #9)
 
    *  support for vlan-lists/vlan-ranges (Github issue #10)
