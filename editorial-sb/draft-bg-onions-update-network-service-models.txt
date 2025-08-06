@@ -5,8 +5,8 @@
 Network Working Group                                      O. G. D. Dios
 Internet-Draft                                                Telefonica
 Intended status: Informational                                S. Barguil
-Expires: 6 February 2026                                           Nokia
-                                                           5 August 2025
+Expires: 7 February 2026                                           Nokia
+                                                           6 August 2025
 
 
               An Update of Service and Network Data Models
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 February 2026.
+   This Internet-Draft will expire on 7 February 2026.
 
 Copyright Notice
 
@@ -203,10 +203,10 @@ Table of Contents
    *  Add support for Flexible Cross-Connect (FXC) Service ([RFC9744])
       (Github issue #8)
 
-   *  add explanatory text for EVPN multihoming using LAG (Github issue
+   *  Add explanatory text for EVPN multihoming using LAG (Github issue
       #9)
 
-   *  support for vlan-lists/vlan-ranges (Github issue #10) When
+   *  Support for vlan-lists/vlan-ranges (Github issue #10) When
       defining a Layer 2 service, sometimes multiple VLANs are mapped
       into a given service.  It would be good to support this in the
       L2NM encapsulation stanza.  Examples:
