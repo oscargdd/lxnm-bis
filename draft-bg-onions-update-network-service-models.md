@@ -103,8 +103,8 @@ Implementations of LxNM models in controllers required new functionalities which
 * Explicity asign a RD at node leve (Github issue #7)
      In the model, a RD must be always asigned via profile at service level. It is useful to be able to set a explicit RD directly at nodel level overriding the value of the profile. This way, a common profile can be used for the whole services for use cases where only RD changes per node.
 * Add support for Flexible Cross-Connect (FXC) Service ({{?RFC9744}}) (Github issue #8)
-* add explanatory text for EVPN multihoming using LAG (Github issue #9)
-* support for vlan-lists/vlan-ranges (Github issue #10)
+* Add explanatory text for EVPN multihoming using LAG (Github issue #9)
+* Support for vlan-lists/vlan-ranges (Github issue #10)
     When defining a Layer 2 service, sometimes multiple VLANs are mapped into a given service. It would be good to support this in the L2NM encapsulation stanza. Examples:
     * (i) typically used in single-tagged scenarios: vlan-id-list [200 210-219 222 234 240-249];
     * (ii) dual-tagged scenario, with s-vlan=430 and a list of c-vlans: vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ];
