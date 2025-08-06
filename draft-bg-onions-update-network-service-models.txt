@@ -5,8 +5,8 @@
 Network Working Group                                      O. G. D. Dios
 Internet-Draft                                                Telefonica
 Intended status: Informational                                S. Barguil
-Expires: 6 February 2026                                           Nokia
-                                                           5 August 2025
+Expires: 7 February 2026                                           Nokia
+                                                           6 August 2025
 
 
               An Update of Service and Network Data Models
@@ -18,7 +18,8 @@ Abstract
    to facilitate the deployment of connectivity services such as Layer 2
    and Layer 3 VPN services in provider networks.  This document reports
    the findings from the implementations, including missing
-   functionalities, configuration blocks, operational issues and
+   functionalities, configuration blocks alligment against recent
+   network models published, operational issues/limitatations and
    enhancements.
 
 About This Document
@@ -49,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 February 2026.
+   This Internet-Draft will expire on 7 February 2026.
 
 Copyright Notice
 
@@ -69,7 +70,7 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Service and Network YANG Data Models in the ETF
+   3.  Service and Network YANG Data Models in the IETF
    4.  Observations and new requirements
      4.1.  Enhancements to LxSM and LxNM
        4.1.1.  L3NM Enhancements
@@ -108,7 +109,7 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Service and Network YANG Data Models in the ETF
+3.  Service and Network YANG Data Models in the IETF
 
    Several IETF Working Groups have developed YANG modules in order to
    foster the provisioning and, more generally, the deployment of
@@ -184,8 +185,8 @@ Table of Contents
 
       -  For L3VPN with multicast, one implementation has reported that
          Cisco MVPN augmentation were added to include various profiles
-         ( ipmsi and spmsi ) . There is YANG module from IETF as of
-         today that supports full MVPN/SPMSI/IPMSI under L3NM directly.
+         (ipmsi and spmsi).  There is YANG module from IETF as of today
+         that supports full MVPN/SPMSI/IPMSI under L3NM directly.
          Standardized profiles are required to be added.
 
 4.1.2.  L2NM Enhancements
@@ -202,16 +203,16 @@ Table of Contents
    *  Add support for Flexible Cross-Connect (FXC) Service ([RFC9744])
       (Github issue #8)
 
-   *  add explanatory text for EVPN multihoming using LAG (Github issue
+   *  Add explanatory text for EVPN multihoming using LAG (Github issue
       #9)
 
-   *  support for vlan-lists/vlan-ranges (Github issue #10) When
+   *  Support for vlan-lists/vlan-ranges (Github issue #10) When
       defining a Layer 2 service, sometimes multiple VLANs are mapped
       into a given service.  It would be good to support this in the
       L2NM encapsulation stanza.  Examples:
 
-      -  (i) typically used in single-tagged scenarios: vlan-id-list [
-         200 210-219 222 234 240-249 ];
+      -  (i) typically used in single-tagged scenarios: vlan-id-list
+         [200 210-219 222 234 240-249];
 
       -  (ii) dual-tagged scenario, with s-vlan=430 and a list of
          c-vlans: vlan-tags outer 430 inner-list [ 200 210-219 222 234
@@ -222,7 +223,7 @@ Table of Contents
    *  Performance monitoring
 
       -  ITU-T Y.1731 performance monitoring in Ethernet based networks
-         . L2NM itself (RFC 9291) doesn't natively include OAM specifics
+         . L2NM itself (RFC9291) doesn't natively include OAM specifics
 
 4.2.  New Functionalities Required to Fully Support Connectivity
       Services

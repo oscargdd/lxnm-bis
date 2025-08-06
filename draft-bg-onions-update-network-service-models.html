@@ -8,12 +8,12 @@
 <meta content="Oscar Gonzalez de Dios" name="author">
 <meta content="Samier Barguil" name="author">
 <meta content="
-       Service &amp; Network  data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in  provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks, operational issues and enhancements. 
+       Service &amp; Network data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks alligment against recent network models published, operational issues/limitatations and enhancements. 
     " name="description">
 <meta content="xml2rfc 3.30.0" name="generator">
-<meta content="next generation" name="keyword">
-<meta content="unicorn" name="keyword">
-<meta content="sparkling distributed ledger" name="keyword">
+<meta content="Network Models" name="keyword">
+<meta content="L3NM" name="keyword">
+<meta content="L2NM" name="keyword">
 <meta content="draft-bg-onions-update-network-service-models-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.30.0
@@ -1051,7 +1051,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dios &amp; Barguil</td>
-<td class="center">Expires 6 February 2026</td>
+<td class="center">Expires 7 February 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-bg-onions-update-network-service-models-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-08-05" class="published">5 August 2025</time>
+<time datetime="2025-08-06" class="published">6 August 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-02-06">6 February 2026</time></dd>
+<dd class="expires"><time datetime="2026-02-07">7 February 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1086,7 +1086,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">An Update of Service and Network Data Models</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">Service &amp; Network  data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in  provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks, operational issues and enhancements.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">Service &amp; Network data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks alligment against recent network models published, operational issues/limitatations and enhancements.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1118,7 +1118,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1154,7 +1154,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-service-and-network-yang-da" class="internal xref">Service and Network YANG Data Models in the ETF</a></p>
+            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-service-and-network-yang-da" class="internal xref">Service and Network YANG Data Models in the IETF</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-observations-and-new-requir" class="internal xref">Observations and new requirements</a></p>
@@ -1228,13 +1228,13 @@ described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</s
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="service-and-network-yang-data-models-in-the-etf">
+<div id="service-and-network-yang-data-models-in-the-ietf">
 <section id="section-3">
       <h2 id="name-service-and-network-yang-da">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-service-and-network-yang-da" class="section-name selfRef">Service and Network YANG Data Models in the ETF</a>
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-service-and-network-yang-da" class="section-name selfRef">Service and Network YANG Data Models in the IETF</a>
       </h2>
 <p id="section-3-1">Several IETF Working Groups have developed YANG modules in order
-   to foster the provisioning and, more generally, the deployment of services.  These modules focus on
+   to foster the provisioning and, more generally, the deployment of services. These modules focus on
    how the network operator intents to manage a network through
    protocols and devices to deliver a service. The intended configuration
    at the device level is derived from network YANG data models.
@@ -1314,7 +1314,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <p id="section-4.1.1-1.5.1">Improving Multicast Support:<a href="#section-4.1.1-1.5.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1.1-1.5.2.1">
-                  <p id="section-4.1.1-1.5.2.1.1">For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles ( ipmsi and spmsi ) . There is YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added.<a href="#section-4.1.1-1.5.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-4.1.1-1.5.2.1.1">For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles (ipmsi and spmsi). There is YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added.<a href="#section-4.1.1-1.5.2.1.1" class="pilcrow">¶</a></p>
 </li>
               </ul>
 </li>
@@ -1338,14 +1338,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <p id="section-4.1.2-1.3.1">Add support for Flexible Cross-Connect (FXC) Service (<span>[<a href="#RFC9744" class="cite xref">RFC9744</a>]</span>) (Github issue #8)<a href="#section-4.1.2-1.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.2-1.4">
-              <p id="section-4.1.2-1.4.1">add explanatory text for EVPN multihoming using LAG (Github issue #9)<a href="#section-4.1.2-1.4.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.4.1">Add explanatory text for EVPN multihoming using LAG (Github issue #9)<a href="#section-4.1.2-1.4.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.2-1.5">
-              <p id="section-4.1.2-1.5.1">support for vlan-lists/vlan-ranges (Github issue #10)
+              <p id="section-4.1.2-1.5.1">Support for vlan-lists/vlan-ranges (Github issue #10)
   When defining a Layer 2 service, sometimes multiple VLANs are mapped into a given service. It would be good to support this in the L2NM encapsulation stanza. Examples:<a href="#section-4.1.2-1.5.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1.2-1.5.2.1">
-                  <p id="section-4.1.2-1.5.2.1.1">(i) typically used in single-tagged scenarios: vlan-id-list [ 200 210-219 222 234 240-249 ];<a href="#section-4.1.2-1.5.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-4.1.2-1.5.2.1.1">(i) typically used in single-tagged scenarios: vlan-id-list [200 210-219 222 234 240-249];<a href="#section-4.1.2-1.5.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-4.1.2-1.5.2.2">
                   <p id="section-4.1.2-1.5.2.2.1">(ii) dual-tagged scenario, with s-vlan=430 and a list of c-vlans: vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ];<a href="#section-4.1.2-1.5.2.2.1" class="pilcrow">¶</a></p>
@@ -1359,7 +1359,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <p id="section-4.1.2-1.7.1">Performance monitoring<a href="#section-4.1.2-1.7.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1.2-1.7.2.1">
-                  <p id="section-4.1.2-1.7.2.1.1">ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC 9291) doesn't natively include OAM specifics<a href="#section-4.1.2-1.7.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-4.1.2-1.7.2.1.1">ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC9291) doesn't natively include OAM specifics<a href="#section-4.1.2-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
               </ul>
 </li>
