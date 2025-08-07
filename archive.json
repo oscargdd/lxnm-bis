@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-27T02:12:09.870595+00:00",
+  "timestamp": "2025-08-07T02:06:46.722385+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -361,9 +361,17 @@
       ],
       "body": "1.\tITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC\u202f9291) doesn't natively include OAM specifics \n\nReported by: Daniele & Sujay",
       "createdAt": "2025-07-07T12:36:46Z",
-      "updatedAt": "2025-07-07T12:36:46Z",
+      "updatedAt": "2025-08-05T13:12:41Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "RFC 9375 defines a YANG model for both Network performance monitoring and VPN performance monitoring, we should consider how RFC9375 can be consolidated into LxNM.",
+          "createdAt": "2025-08-05T13:12:41Z",
+          "updatedAt": "2025-08-05T13:12:41Z"
+        }
+      ]
     },
     {
       "number": 18,
@@ -559,6 +567,76 @@
               "updatedAt": "2025-07-22T16:51:27Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOOJAfS86iKEm1",
+      "title": "minor editorial updates",
+      "url": "https://github.com/oscargdd/lxnm-bis/pull/20",
+      "state": "MERGED",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Remove some white spaces and fixing some nits",
+      "createdAt": "2025-08-05T09:34:17Z",
+      "updatedAt": "2025-08-06T15:54:16Z",
+      "baseRepository": "oscargdd/lxnm-bis",
+      "baseRefName": "main",
+      "baseRefOid": "2c15846bd8ad74b57a44f69e1980f9050d7bfe3c",
+      "headRepository": "oscargdd/lxnm-bis",
+      "headRefName": "editorial-sb",
+      "headRefOid": "15174bb9a58cfe7311ccadd250ee719393fd5b53",
+      "closedAt": "2025-08-06T15:54:16Z",
+      "mergedAt": "2025-08-06T15:54:16Z",
+      "mergedBy": "sbarguil",
+      "mergeCommit": {
+        "oid": "ad307433e66f76f287edf508622b38f16ab09ce1"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOOJAfS86iKSry",
+      "title": "fix some formatting issues",
+      "url": "https://github.com/oscargdd/lxnm-bis/pull/21",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-08-05T09:51:13Z",
+      "updatedAt": "2025-08-06T15:55:31Z",
+      "baseRepository": "oscargdd/lxnm-bis",
+      "baseRefName": "main",
+      "baseRefOid": "ad307433e66f76f287edf508622b38f16ab09ce1",
+      "headRepository": "oscargdd/lxnm-bis",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "496a0b10eb561d62be9bb854e1796a4bf49180bc",
+      "closedAt": "2025-08-06T15:55:31Z",
+      "mergedAt": "2025-08-06T15:55:31Z",
+      "mergedBy": "sbarguil",
+      "mergeCommit": {
+        "oid": "71d2ebf89a571aa9d7e9d6ded803da51f78fbda5"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOJAfS864UC5X",
+          "commit": {
+            "abbreviatedOid": "0b8d3b1"
+          },
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-06T12:16:21Z",
+          "updatedAt": "2025-08-06T12:16:21Z",
+          "comments": []
         }
       ]
     }
