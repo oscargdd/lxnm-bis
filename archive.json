@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-07T02:06:46.722385+00:00",
+  "timestamp": "2025-08-10T02:10:10.309151+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -402,6 +402,24 @@
       "body": "Advance connectivity services require the creation of complex policies. The LxNM models allows to indicate which policy (or policies) should be used. However, LxNM does not include the definition of policies. There are a set a device models which could be used as a base for the network model.",
       "createdAt": "2025-07-24T15:13:40Z",
       "updatedAt": "2025-07-24T15:13:40Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 22,
+      "id": "I_kwDOOJAfS87E46tK",
+      "title": "Applicability to Option A, B, C",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/22",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "L3NM"
+      ],
+      "body": "this also cover the link with AC models.",
+      "createdAt": "2025-08-08T09:05:11Z",
+      "updatedAt": "2025-08-08T09:05:11Z",
       "closedAt": null,
       "comments": []
     }
