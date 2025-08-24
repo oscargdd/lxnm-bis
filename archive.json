@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-10T02:10:10.309151+00:00",
+  "timestamp": "2025-08-24T01:58:50.436349+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -420,6 +420,22 @@
       "body": "this also cover the link with AC models.",
       "createdAt": "2025-08-08T09:05:11Z",
       "updatedAt": "2025-08-08T09:05:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOOJAfS87HQPv_",
+      "title": "Enhance peer-as YANG Definition with union Including string Type",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/23",
+      "state": "OPEN",
+      "author": "sujmurth",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "\nDear L3NM Working Group Members,\n\nI am writing to propose a modification to the peer-as leaf definition within our YANG models. Currently, the peer-as leaf is defined as:\n\nleaf peer-as {\ntype inet:as-number;\nmandatory true;\ndescription\n\"Indicates the customer's ASN when\nthe customer requests BGP routing.\";\n}\n\nWhile type inet:as-number is the standard and semantically correct choice for Autonomous System Numbers (ASNs), I propose introducing a union type for peer-as to allow for greater flexibility, specifically by including a string type alongside inet:as-number. This would accommodate certain operational or legacy requirements where ASNs might be represented in non-standard string formats.\n\nThe proposed modification would look like this:\n\nleaf peer-as {\nmandatory true;\ndescription\n\"Indicates the customer's ASN when\nthe customer requests BGP routing.\";\ntype union {\ntype inet:as-number; // Retain the standard ASN type\ntype string {\n// Define a pattern that allows for specific string representations,\n// e.g., asdot+ or other custom formats.\n// Example pattern (this would need to be carefully refined):\npattern '[0-9]+.[0-9]+';\ndescription \"Allows for ASNs represented as strings, e.g., asdot+ format or other specific string notations.\";\n}\n}\n}\n\nThe rationale for this proposal is to provide a mechanism for:\n\nEnhanced Flexibility: To support scenarios where ASNs are provided or consumed in specific string formats that might not be strictly conformant with inet:as-number's internal parsing or for custom/legacy system integrations.\nExplicit String Representation: Even though inet:as-number handles both \"asplain\" (integer) and \"asdot+\" (e.g., 65000.100) notations, explicitly allowing a string type in the union can provide a clear distinction for systems that prefer to represent \"asdot+\" as a string or require other specific string patterns.\n\nIt is crucial to acknowledge the implications of including a string type. A broadly defined pattern, such as [0-9]+.[0-9]+, could inadvertently accept values that are syntactically valid strings but semantically invalid ASNs. For instance, a value like 64086.59905 would be accepted by this pattern, despite not being a valid ASN in standard \"asplain\" or \"asdot+\" formats. Therefore, if a string type is included, its pattern must be meticulously crafted to strictly validate against intended string representations (e.g., a precise regex for \"asdot+\" or other agreed-upon formats) to prevent the configuration of semantically incorrect data.\n\nThis approach aims to strike a balance between strict type enforcement and practical operational flexibility.\n\nThank you for your time and consideration.\n\n",
+      "createdAt": "2025-08-21T19:23:26Z",
+      "updatedAt": "2025-08-21T19:23:26Z",
       "closedAt": null,
       "comments": []
     }
