@@ -86,7 +86,6 @@ Implementations of LxNM models in controllers required new functionalities which
 
 * BFD parametrization of static routes (Github issue #1):
     +  The L3NM Yang data model allows to manage static routes in a VPN. That is, for a particular VPN service, new Pv4 and IPv6 static routes can be added, modified or deleted. The data model allows to specify wether BFD is desired in the static route. Whenever a controller derives the device configuration of the static route it will need to decide a particular BFD configuration, typically from a pre-defined template. Operators required, for different services, to customize the main BFD parameters to allow, for example, faster detection for critical services. The new requirement is the ability to specify BFD intented configuration in the IPv4 and IPv6 static routes, including a required-min-rx-interval and multiplier.
-
 * Management of VLAN 0 in tagged interfaces (Github issue #2): LxNM Yang models have a range defined for cvlan between 1 and 4094. VLAN 0 should also be supported and is used in deployments.
 * Missing BGP intended configuration blocks (position against Attachment Circuits) (Github issue #3).
     + There are a set of BGP configuration blocks required to manage BGP based services which are present now in the AC-Model but not in the L3NM:
@@ -97,8 +96,10 @@ Implementations of LxNM models in controllers required new functionalities which
 * SRv6 support for L3VPN (issue #15): SRv6-based BGP services including L3VPN, whose procedures are defined in {{?RFC9252}}
 * Improving Multicast Support:
      + For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles ( ipmsi and spmsi ) . There is YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added.
+* Extend guidance of how the network models can be used to and operationalize Inter-AS VPN options (A, B, and C as defined in RFC 4364) using the L3NM framework.
 
 ### L2NM Enhancements
+
 
 * EVPN Remote and Local eth-tag (Github issue #6)
 * Explicity asign a RD at node leve (Github issue #7)
@@ -112,7 +113,8 @@ Implementations of LxNM models in controllers required new functionalities which
        - Dual-tagged scenario, with s-vlan=430 and a list of c-vlans: vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ];
 * SRv6 support for L2VPN (issue #15)
 * Performance monitoring
-    + ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC 9291) doesn't natively include OAM specifics
+    + ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself (RFC9291) doesn't natively include OAM specifics.
+* Add EVI identifier to differentiate it from VPN-ID. Each EVI maps to a specific EVPN service (e.g., a Layer 2 VPN bridging a particular VLAN across the EVPN fabric) (Github issue #24).
 
 ## New Functionalities Required to Fully Support Connectivity Services
 
@@ -122,7 +124,7 @@ The realization of advance connectivity services requires, in addition to the co
     + ACLs and Prefix sets can be reused among services. Thus, they need to be handled at a network level, regardless of the actual service using them.
 * Definition of routing policies, including community sets, as path sets, etc:
     + Advance connectivity services require the creation of complex policies. The LxNM models allows to indicate which policy (or policies) should be used. However, LxNM does not include the definition of policies. There are a set a device models which could be used as a base for the network model.
-* Pre and post checks
+* Pre and post checks before and after deploying a service in the netwrok.
 * Preparation of the interface. Prior to setting up .
 
 ## Status of the Intended Network Service
