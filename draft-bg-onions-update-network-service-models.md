@@ -41,7 +41,7 @@ informative:
 
 --- abstract
 
-Service & Network data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks alligment against recent network models published, operational issues/limitatations and enhancements.
+Service & Network data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks aligment against recent network models published, operational issues/limitatations and enhancements.
 
 
 --- middle
@@ -85,7 +85,7 @@ Implementations of LxNM models in controllers required new functionalities which
 ### L3NM Enhancements
 
 * BFD parametrization of static routes (Github issue #1):
-    +  The L3NM Yang data model allows to manage static routes in a VPN. That is, for a particular VPN service, new Pv4 and IPv6 static routes can be added, modified or deleted. The data model allows to specify wether BFD is desired in the static route. Whenever a controller derives the device configuration of the static route it will need to decide a particular BFD configuration, typically from a pre-defined template. Operators required, for different services, to customize the main BFD parameters to allow, for example, faster detection for critical services. The new requirement is the ability to specify BFD intented configuration in the IPv4 and IPv6 static routes, including a required-min-rx-interval and multiplier.
+    +  The L3NM Yang data model allows to manage static routes in a VPN. That is, for a particular VPN service, new Pv4 and IPv6 static routes can be added, modified or deleted. The data model allows to specify whether BFD is desired in the static route. Whenever a controller derives the device configuration of the static route it will need to decide a particular BFD configuration, typically from a pre-defined template. Operators required, for different services, to customize the main BFD parameters to allow, for example, faster detection for critical services. The new requirement is the ability to specify BFD intended configuration in the IPv4 and IPv6 static routes, including a required-min-rx-interval and multiplier.
 * Management of VLAN 0 in tagged interfaces (Github issue #2): LxNM Yang models have a range defined for cvlan between 1 and 4094. VLAN 0 should also be supported and is used in deployments.
 * Missing BGP intended configuration blocks (position against Attachment Circuits) (Github issue #3).
     + There are a set of BGP configuration blocks required to manage BGP based services which are present now in the AC-Model but not in the L3NM:
@@ -102,7 +102,7 @@ Implementations of LxNM models in controllers required new functionalities which
 
 
 * EVPN Remote and Local eth-tag (Github issue #6)
-* Explicity assign a RD at node leve (Github issue #7)
+* Explicitly assign a RD at node level (Github issue #7)
    + In the model, a RD must be always assigned via profile at service level. It is useful to be able to set a explicit RD directly at node level overriding the value of the profile. This way, a common profile can be used for the whole services for use cases where only RD changes per node.
 
 * Add support for Flexible Cross-Connect (FXC) Service ({{?RFC9744}}) (Github issue #8)
