@@ -137,7 +137,7 @@ Table of Contents
 4.1.  Enhancements to LxSM and LxNM
 
    Implementations of LxNM models in controllers required new
-   functionalities which were not covered [RFC9182] and [RFC9291] to
+   functionalities which were not covered in [RFC9182] and [RFC9291] to
    deploy the missing functions in the Operator services.  This section
    compiles the functions that were reported by those implementations.
 
@@ -162,7 +162,7 @@ Table of Contents
       Yang models have a range defined for cvlan between 1 and 4094.
       VLAN 0 should also be supported and is used in deployments.
 
-   *  Missing BGP intended configuration blocks (position against
+   *  Missing BGP intended configuration blocks (in relation to
       Attachment Circuits) (Github issue #3).
 
       -  There are a set of BGP configuration blocks required to manage
@@ -184,13 +184,13 @@ Table of Contents
 
       -  For L3VPN with multicast, one implementation has reported that
          Cisco MVPN augmentation were added to include various profiles
-         ( ipmsi and spmsi ) . There is YANG module from IETF as of
+         ( ipmsi and spmsi ) . There is no YANG module from IETF as of
          today that supports full MVPN/SPMSI/IPMSI under L3NM directly.
          Standardized profiles are required to be added.
 
-   *  Extend guidance of how the network models can be used to and
-      operationalize Inter-AS VPN options (A, B, and C as defined in RFC
-      4364) using the L3NM framework.
+   *  Extend guidance of how the network models can be used to/and
+      operationalize Inter-AS VPN options (A, B, and C as defined in
+      [RFC4364]) using the L3NM framework (Github issue #25).
 
 4.1.2.  L2NM Enhancements
 
@@ -201,8 +201,8 @@ Table of Contents
       -  In the model, a RD must be always assigned via profile at
          service level.  It is useful to be able to set a explicit RD
          directly at node level overriding the value of the profile.
-         This way, a common profile can be used for the whole services
-         for use cases where only RD changes per node.
+         This way, a common profile can be used for all the services for
+         use cases where only RD changes per node.
 
    *  Add support for Flexible Cross-Connect (FXC) Service ([RFC9744])
       (Github issue #8)
@@ -228,7 +228,7 @@ Table of Contents
    *  Performance monitoring
 
       -  ITU-T Y.1731 performance monitoring in Ethernet based networks
-         . L2NM itself (RFC9291) doesn't natively include OAM specifics.
+         . L2NM itself [RFC9291] doesn't natively include OAM specifics.
 
    *  Add EVI identifier to differentiate it from VPN-ID.  Each EVI maps
       to a specific EVPN service (e.g., a Layer 2 VPN bridging a
@@ -257,11 +257,12 @@ Table of Contents
    definition of policies.  There are a set a device models which could
    be used as a base for the network model. * Pre and post checks before
    and after deploying a service in the network. * Preparation of the
-   interface.  Prior to setting up .
+   interface.  Prior to the application of the entire configuration
+   profile.
 
 4.3.  Status of the Intended Network Service
 
-   The Network Service Yang models represents an intent of the
+   The Network Service Yang models represent an intent of the
    realization of service.  A controller, after an instance of the
    network service yang intent has been created, will derive the
    necessary device level configurations and apply them to the necessary
@@ -278,7 +279,7 @@ Table of Contents
       -  What mechanisms or feedback loops exist to confirm successful
          configuration deployment beyond simple acknowledgment?
 
-      -  How does the system can handle transient errors or partial
+      -  How can the system can handle transient errors or partial
          configuration applications from the model perspective?
 
       -  Are there specific operational attributes that can be used to
@@ -291,7 +292,7 @@ Table of Contents
       -  If a configuration is manually removed via CLI at the network
          device, is there a mechanism to reflect this change northbound?
 
-   *  Operative Status Clarification (Github issue #4)
+   *  Operational Status Clarification (Github issue #4)
 
       -  Understanding the interrelationships between the operational
          status of VPN services, VPN nodes, and VPN network access is
@@ -347,6 +348,10 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc9291>.
 
 7.2.  Informative References
+
+   [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
+              Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
+              2006, <https://www.rfc-editor.org/rfc/rfc4364>.
 
    [RFC8199]  Bogdanovic, D., Claise, B., and C. Moberg, "YANG Module
               Classification", RFC 8199, DOI 10.17487/RFC8199, July
