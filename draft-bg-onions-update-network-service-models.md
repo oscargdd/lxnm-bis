@@ -160,7 +160,6 @@ This document has no IANA actions.
 --- back
 
 # Acknowledgments
-
 This documents is based on the issues compiled in Github lxnm repository. The authors would like to acknowledge the issues raised by Julian Lucek, Xiao Min, Daniele Ceccarelli and Sujay Murthy.
 
 {:numbered="false"}
