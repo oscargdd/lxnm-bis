@@ -5,8 +5,8 @@
 Network Working Group                                      O. G. D. Dios
 Internet-Draft                                                Telefonica
 Intended status: Informational                                S. Barguil
-Expires: 7 February 2026                                           Nokia
-                                                           6 August 2025
+Expires: 20 March 2026                                             Nokia
+                                                       16 September 2025
 
 
            An Update of Service and Network YANG Data Models
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 February 2026.
+   This Internet-Draft will expire on 20 March 2026.
 
 Copyright Notice
 
@@ -189,6 +189,10 @@ Table of Contents
          today that supports full MVPN/SPMSI/IPMSI under L3NM directly.
          Standardized profiles are required to be added.
 
+   *  Extend guidance of how the network models can be used to and
+      operationalize Inter-AS VPN options (A, B, and C as defined in RFC
+      4364) using the L3NM framework.
+
 4.1.2.  L2NM Enhancements
 
    *  EVPN Remote and Local eth-tag (Github issue #6)
@@ -225,7 +229,11 @@ Table of Contents
    *  Performance monitoring
 
       -  ITU-T Y.1731 performance monitoring in Ethernet based networks
-         . L2NM itself (RFC 9291) doesn't natively include OAM specifics
+         . L2NM itself (RFC9291) doesn't natively include OAM specifics.
+
+   *  Add EVI identifier to differentiate it from VPN-ID.  Each EVI maps
+      to a specific EVPN service (e.g., a Layer 2 VPN bridging a
+      particular VLAN across the EVPN fabric) (Github issue #24).
 
 4.2.  New Functionalities Required to Fully Support Connectivity
       Services
@@ -248,8 +256,9 @@ Table of Contents
    complex policies.  The LxNM models allows to indicate which policy
    (or policies) should be used.  However, LxNM does not include the
    definition of policies.  There are a set a device models which could
-   be used as a base for the network model. * Pre and post checks *
-   Preparation of the interface.  Prior to setting up .
+   be used as a base for the network model. * Pre and post checks before
+   and after deploying a service in the netwrok. * Preparation of the
+   interface.  Prior to setting up .
 
 4.3.  Status of the Intended Network Service
 
