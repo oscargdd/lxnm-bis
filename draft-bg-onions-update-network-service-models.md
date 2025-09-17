@@ -107,7 +107,7 @@ Implementations of LxNM models in controllers required new functionalities which
 
 * Add support for Flexible Cross-Connect (FXC) Service ({{?RFC9744}}) (Github issue #8)
 * Add explanatory text for EVPN multihoming using LAG (Github issue #9)
-* support for vlan-lists/vlan-ranges (Github issue #10)
+* Support for vlan-lists/vlan-ranges (Github issue #10)
    + When defining a Layer 2 service, sometimes multiple VLANs are mapped into a given service. It would be good to support this in the L2NM encapsulation stanza. Examples are as follows:
        - Typically used in single-tagged scenarios: vlan-id-list [ 200 210-219 222 234 240-249 ];
        - Dual-tagged scenario, with s-vlan=430 and a list of c-vlans: vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ];
@@ -119,12 +119,16 @@ Implementations of LxNM models in controllers required new functionalities which
 ## New Functionalities Required to Fully Support Connectivity Services
 
 The realization of advanced connectivity services requires, in addition to the configurations expressed in LxNM models:
+
 * Definition of Access Control lists and prefix Sets:
     + Connectivity services often include mechanisms to filter forwarding packets. The LxNM models allow to include a 'forwarding-profile-identifier'. A forwarding profile refers to the policies that apply to the forwarding of packets conveyed within a VPN. Such policies may consist, for example, of applying Access Control Lists (ACLs). However, currently there is not an ACL network service model (even though a device level ACL model exists) that allows to manipulate such ACLs and sets when creating the service.
     + ACLs and Prefix sets can be reused among services. Thus, they need to be handled at a network level, regardless of the actual service using them.
+
 * Definition of routing policies, including community sets, as path sets, etc:
     + Advanced connectivity services require the creation of complex policies. The LxNM models allows to indicate which policy (or policies) should be used. However, LxNM does not include the definition of policies. There are a set a device models which could be used as a base for the network model.
+
 * Pre and post checks before and after deploying a service in the network.
+
 * Preparation of the interface. Prior to the application of the entire configuration profile.
 
 ## Status of the Intended Network Service
