@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-26T01:49:33.270531+00:00",
+  "timestamp": "2025-09-18T01:40:54.946527+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -456,6 +456,25 @@
       "updatedAt": "2025-08-25T09:49:43Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOOJAfS87MACjN",
+      "title": "Implementing Inter-AS Options A, B, and C with IETF L3NM",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/25",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "enhancement",
+        "L3NM"
+      ],
+      "body": "As part of this effort, we are seeking guidance on how to model and operationalize Inter-AS VPN options (A, B, and C as defined in RFC 4364) using the L3NM framework. While we understand that L3NM provides a service-centric and abstracted model (complementing L3SM), we are particularly interested in how to bridge this abstraction to the specific Inter-AS deployment models in a scalable and standardized way.\n \nOur Questions and Clarifications:\n \n1. Inter-AS Option A (VRF-to-VRF at ASBR)\nIn this model, ASBRs behave similarly to PEs, with VRFs on both sides and CE-like links between ASBRs.\nCan L3NM model this scenario by treating each ASBR as a site-network-access connecting to a vpn-service, where the remote ASBR is abstracted as a CE?\nAre there any attributes (e.g., RTs, routing protocol types) that you would recommend modeling explicitly to support this case?\n \n2. Inter-AS Option B (EBGP between ASBRs using VPNv4/v6)\nHere, ASBRs perform VPNv4/v6 route exchange via EBGP, and VRFs reside only on PEs.\nDoes L3NM support modeling such inter-AS ASBR peering relationships directly?\nWould it be appropriate to rely on RFC 8345 (Network Topology YANG Model) in conjunction with L3NM to represent AS-level connectivity and the inter-domain peering context?\n \nWould you recommend an augmentation or interface between L3NM and a topology model to capture this case effectively?\n \n3. Inter-AS Option C (MP-BGP between PEs, ASBRs as MPLS Transit)\nThis option uses direct MP-BGP sessions between PEs, with ASBRs acting as label-switching transit routers.\nIs there a way in L3NM to explicitly model PE-to-PE overlay connections that traverse non-service-aware ASBRs?\nShould ASBRs in this case be entirely abstracted from the L3NM model and instead represented within the network topology ?\n \nAre there any existing drafts, extensions, or design guidelines currently under consideration for L3NM that address multi-AS or inter-domain VPN service automation?\n",
+      "createdAt": "2025-09-16T14:33:21Z",
+      "updatedAt": "2025-09-16T14:33:21Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -691,6 +710,210 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 26,
+      "id": "PR_kwDOOJAfS86o4aOf",
+      "title": "adding missing issues",
+      "url": "https://github.com/oscargdd/lxnm-bis/pull/26",
+      "state": "MERGED",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-09-16T14:45:54Z",
+      "updatedAt": "2025-09-16T16:41:05Z",
+      "baseRepository": "oscargdd/lxnm-bis",
+      "baseRefName": "main",
+      "baseRefOid": "71d2ebf89a571aa9d7e9d6ded803da51f78fbda5",
+      "headRepository": "oscargdd/lxnm-bis",
+      "headRefName": "missing-issues",
+      "headRefOid": "12996e6148c4f6c983b6640f5cae9d7c8f113e6f",
+      "closedAt": "2025-09-16T16:41:05Z",
+      "mergedAt": "2025-09-16T16:41:05Z",
+      "mergedBy": "oscargdd",
+      "mergeCommit": {
+        "oid": "c4e8e6b4eec56c04a2b457845dfba57ed2796c76"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOJAfS87AkvpV",
+          "commit": {
+            "abbreviatedOid": "12996e6"
+          },
+          "author": "oscargdd",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-16T16:41:00Z",
+          "updatedAt": "2025-09-16T16:41:00Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "PR_kwDOOJAfS86o4dsr",
+      "title": "format and misspelling",
+      "url": "https://github.com/oscargdd/lxnm-bis/pull/27",
+      "state": "CLOSED",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "All issue references are now consistent with \u201cGitHub Issue #X\u201d, and punctuation/spelling errors (like asign \u2192 assign, nodel leve \u2192 node level) are fixed.\r\n\r\n\u201cadvance\u201d \u2192 \u201cadvanced\u201d where needed.\r\n\r\nCorrected typos (netwrok \u2192 network).",
+      "createdAt": "2025-09-16T14:49:56Z",
+      "updatedAt": "2025-09-16T15:01:23Z",
+      "baseRepository": "oscargdd/lxnm-bis",
+      "baseRefName": "main",
+      "baseRefOid": "71d2ebf89a571aa9d7e9d6ded803da51f78fbda5",
+      "headRepository": "oscargdd/lxnm-bis",
+      "headRefName": "editorial-review",
+      "headRefOid": "dbe1212851f0dd35f1559cd832ad707d35fca0fa",
+      "closedAt": "2025-09-16T15:01:23Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 28,
+      "id": "PR_kwDOOJAfS86o4sNM",
+      "title": "Editorial review minor",
+      "url": "https://github.com/oscargdd/lxnm-bis/pull/28",
+      "state": "MERGED",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\r\nAll issue references are now consistent with \u201cGitHub Issue #X\u201d\r\nCorrected typos:\r\n\r\nasign \u2192 assign\r\nnodel leve \u2192 node level\r\n\u201cadvance\u201d \u2192 \u201cadvanced\u201d\r\nnetwrok \u2192 network",
+      "createdAt": "2025-09-16T15:06:36Z",
+      "updatedAt": "2025-09-16T17:06:44Z",
+      "baseRepository": "oscargdd/lxnm-bis",
+      "baseRefName": "main",
+      "baseRefOid": "71d2ebf89a571aa9d7e9d6ded803da51f78fbda5",
+      "headRepository": "oscargdd/lxnm-bis",
+      "headRefName": "editorial-review-minor",
+      "headRefOid": "817ef5338ed4e4af5caea1ce7a1f4e1290c2b074",
+      "closedAt": "2025-09-16T17:06:44Z",
+      "mergedAt": "2025-09-16T17:06:44Z",
+      "mergedBy": "oscargdd",
+      "mergeCommit": {
+        "oid": "5a9b16f70ba13c0065772e54d8952034489978af"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOJAfS87AlEBJ",
+          "commit": {
+            "abbreviatedOid": "817ef53"
+          },
+          "author": "oscargdd",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-16T17:06:38Z",
+          "updatedAt": "2025-09-16T17:06:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "id": "PR_kwDOOJAfS86o6KEB",
+      "title": "ack section with contributors to github",
+      "url": "https://github.com/oscargdd/lxnm-bis/pull/29",
+      "state": "MERGED",
+      "author": "oscargdd",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-09-16T17:18:04Z",
+      "updatedAt": "2025-09-16T19:41:01Z",
+      "baseRepository": "oscargdd/lxnm-bis",
+      "baseRefName": "main",
+      "baseRefOid": "5a9b16f70ba13c0065772e54d8952034489978af",
+      "headRepository": "oscargdd/lxnm-bis",
+      "headRefName": "acknowledgements",
+      "headRefOid": "8493aa48006713a6b513f1f52062e9f8794baf4d",
+      "closedAt": "2025-09-16T19:41:01Z",
+      "mergedAt": "2025-09-16T19:41:00Z",
+      "mergedBy": "oscargdd",
+      "mergeCommit": {
+        "oid": "ee030ca10d1a068caada74fb23e36e8452d8ed87"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOJAfS87AmkWA",
+          "commit": {
+            "abbreviatedOid": "39c51e9"
+          },
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-16T19:13:53Z",
+          "updatedAt": "2025-09-16T19:14:23Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-09-16T19:13:54Z",
+              "updatedAt": "2025-09-16T19:14:23Z"
+            },
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-09-16T19:14:19Z",
+              "updatedAt": "2025-09-16T19:14:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOJAfS87Amo0h",
+          "commit": {
+            "abbreviatedOid": "8493aa4"
+          },
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-16T19:18:44Z",
+          "updatedAt": "2025-09-16T19:18:44Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "id": "PR_kwDOOJAfS86pAxDU",
+      "title": "make section 4.2 a list",
+      "url": "https://github.com/oscargdd/lxnm-bis/pull/30",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-09-17T07:46:11Z",
+      "updatedAt": "2025-09-17T07:46:12Z",
+      "baseRepository": "oscargdd/lxnm-bis",
+      "baseRefName": "main",
+      "baseRefOid": "ee030ca10d1a068caada74fb23e36e8452d8ed87",
+      "headRepository": "oscargdd/lxnm-bis",
+      "headRefName": "editorial",
+      "headRefOid": "4e5c0e3e8d1e24a66acd544dda6d3320eb5cf74e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
