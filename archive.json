@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-18T01:40:54.946527+00:00",
+  "timestamp": "2025-09-21T01:50:31.458513+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -144,9 +144,17 @@
       ],
       "body": "Understanding the interrelationships between the operational status of VPN services, VPN nodes, and VPN network access is another significant operational gap. The status of a VPN service may depend on the status of the underlying VPN nodes and the network access provided to the VPN.\n\nTo address this gap, IETF should establish clear dependencies and correlations between the various operational statuses. This could involve defining specific criteria for determining the overall status of a VPN service based on the status of its constituent VPN nodes and network access components. Moreover, real-time monitoring and correlation of status information can provide insights into the health and performance of VPN services.",
       "createdAt": "2025-03-17T12:43:49Z",
-      "updatedAt": "2025-03-17T14:15:04Z",
+      "updatedAt": "2025-09-19T12:09:47Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "see also, https://mailarchive.ietf.org/arch/msg/onions/if1BRJpZqNNxcemra8sq8yz-FBQ/\n\n> From: Alexander Vainshtein <Alexander.Vainshtein=40rbbn.com@dmarc.ietf.org<\n> \n> I have looked up the standard and found that it presumably mentions Operational Status of a pseudowire as oper-status without any clarifications and/or references, and, specifically, without any association with various indicators in the PW Status TLV.\n> \n> This is quite different from RFC [5601<https://datatracker.ietf.org/doc/html/rfc5601>](http://5601%3Chttps//datatracker.ietf.org/doc/html/rfc5601%3E),  which explicitly provides such linkage as can be seen from the quoted text below:\n> \n>   pwOperStatus OBJECT-TYPE\n>      SYNTAX        PwOperStatusTC\n>      MAX-ACCESS    read-only\n>      STATUS        current\n>      DESCRIPTION\n>           \"This object indicates the operational status of the PW; it\n>            does not reflect the status of the Customer Edge (CE) bound\n>            interface.  It is set to down only if pwNotForwarding,\n>            psnFacingPwRxFault, or psnFacingPwTxFault indications are\n>            set in pwLocalStatus or pwRemoteStatus.\n>            It indicates 'lowerLayerDown' if the only reason for\n>            not being in the 'up' state is that either the outer tunnel\n>            or physical layer of the network side is in the 'down'\n>            state.\n>            All other states are declared based on the description\n>            of the PwOperStatusTC.\n>            \"\n> \n> I wonder whether, from your POV, the quoted definition of the PW Operatonal Status is still applicable or not.\n\n\nRegards, and lots of thanks in advance,\nSasha",
+          "createdAt": "2025-09-19T12:09:47Z",
+          "updatedAt": "2025-09-19T12:09:47Z"
+        }
+      ]
     },
     {
       "number": 5,
