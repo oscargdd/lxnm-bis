@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-21T01:50:31.458513+00:00",
+  "timestamp": "2025-11-06T01:51:03.400937+00:00",
   "repo": "oscargdd/lxnm-bis",
   "labels": [
     {
@@ -481,6 +481,22 @@
       "body": "As part of this effort, we are seeking guidance on how to model and operationalize Inter-AS VPN options (A, B, and C as defined in RFC 4364) using the L3NM framework. While we understand that L3NM provides a service-centric and abstracted model (complementing L3SM), we are particularly interested in how to bridge this abstraction to the specific Inter-AS deployment models in a scalable and standardized way.\n \nOur Questions and Clarifications:\n \n1. Inter-AS Option A (VRF-to-VRF at ASBR)\nIn this model, ASBRs behave similarly to PEs, with VRFs on both sides and CE-like links between ASBRs.\nCan L3NM model this scenario by treating each ASBR as a site-network-access connecting to a vpn-service, where the remote ASBR is abstracted as a CE?\nAre there any attributes (e.g., RTs, routing protocol types) that you would recommend modeling explicitly to support this case?\n \n2. Inter-AS Option B (EBGP between ASBRs using VPNv4/v6)\nHere, ASBRs perform VPNv4/v6 route exchange via EBGP, and VRFs reside only on PEs.\nDoes L3NM support modeling such inter-AS ASBR peering relationships directly?\nWould it be appropriate to rely on RFC 8345 (Network Topology YANG Model) in conjunction with L3NM to represent AS-level connectivity and the inter-domain peering context?\n \nWould you recommend an augmentation or interface between L3NM and a topology model to capture this case effectively?\n \n3. Inter-AS Option C (MP-BGP between PEs, ASBRs as MPLS Transit)\nThis option uses direct MP-BGP sessions between PEs, with ASBRs acting as label-switching transit routers.\nIs there a way in L3NM to explicitly model PE-to-PE overlay connections that traverse non-service-aware ASBRs?\nShould ASBRs in this case be entirely abstracted from the L3NM model and instead represented within the network topology ?\n \nAre there any existing drafts, extensions, or design guidelines currently under consideration for L3NM that address multi-AS or inter-domain VPN service automation?\n",
       "createdAt": "2025-09-16T14:33:21Z",
       "updatedAt": "2025-09-16T14:33:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 31,
+      "id": "I_kwDOOJAfS87WAuhI",
+      "title": "Routing Policies as a List",
+      "url": "https://github.com/oscargdd/lxnm-bis/issues/31",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Some devices support the addition of routing policies as list of leaf-list within the VPRN services:\n\nconfigure\n  /service vprn VPRN-01\n    import-policy-list POL-ALLOW-VOIP\n    import-policy-list POL-ALLOW-VIDEO\n    import-policy-list POL-DENY-UNKNOWN\n    commit\n\nRigth Now the L3NM only handles one polcy:\n\n**name** | import-policy| -->type leaf (string)\n\nThis will provide greater flexibility and robustness to the implementation.",
+      "createdAt": "2025-11-05T11:15:29Z",
+      "updatedAt": "2025-11-05T11:15:29Z",
       "closedAt": null,
       "comments": []
     }
