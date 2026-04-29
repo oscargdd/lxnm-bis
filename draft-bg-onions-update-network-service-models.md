@@ -139,7 +139,7 @@ Implementations of LxNM models in controllers required new functionalities which
     When multiple SRv6 locators are available on a PE, operators need a way to
     indicate which locator (or ordered list of locators) should be used for a given L2VPN service. This
     allows traffic from different services to be steered onto distinct locators -- for example, to
-    differentiate by topology, slice, or administrative domain. 
+    differentiate by topology, slice, or administrative domain.
 
     - Address-family-based SRv6 selection.
     SRv6 behavior may need to be configured independently per address family(e.g., for services that
