@@ -114,7 +114,7 @@ Implementations of LxNM models in controllers required new functionalities which
    (VPWS) service type specifically for multiplexing multiple attachment
    circuits across different Ethernet Segments (ESs) and physical
    interfaces into a single EVPN-VPWS service tunnel and still providing
-   Single-Active and All-Active multi-homing. 
+   Single-Active and All-Active multi-homing.
 
 * **Explanatory text for EVPN multihoming using LAG (GitHub issue #9)**
   + The L2NM allows a lag-interface-id to be configured per VPN network access, but does not
@@ -132,10 +132,10 @@ Implementations of LxNM models in controllers required new functionalities which
 * **SRv6 support for L2VPN (GitHub issue #15)**
   + Segment Routing over IPv6 (SRv6) extends BGP-based L2VPN services with IPv6-native data plane
     semantics, as defined in{{?RFC9252}}. Operators deploying SRv6-based L2VPN services require the
-    L2NM to express SRv6-specific configuration that is not currently supported by {{?RFC9291}}. 
+    L2NM to express SRv6-specific configuration that is not currently supported by {{?RFC9291}}.
     Two specific gaps have been identified:
 
-    - SRv6 locator preferences. 
+    - SRv6 locator preferences.
     When multiple SRv6 locators are available on a PE, operators need a way to
     indicate which locator (or ordered list of locators) should be used for a given L2VPN service. This
     allows traffic from different services to be steered onto distinct locators -- for example, to
