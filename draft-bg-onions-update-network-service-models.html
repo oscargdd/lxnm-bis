@@ -10,25 +10,25 @@
 <meta content="
        Service &amp; Network data models have been implemented in recent years to facilitate the deployment of connectivity services such as Layer 2 and Layer 3 VPN services in provider networks. This document reports the findings from the implementations, including missing functionalities, configuration blocks aligment against recent network models published, operational issues/limitatations and enhancements. 
     " name="description">
-<meta content="xml2rfc 3.30.1" name="generator">
+<meta content="xml2rfc 3.34.0" name="generator">
 <meta content="Network Models" name="keyword">
 <meta content="L3NM" name="keyword">
 <meta content="L2NM" name="keyword">
 <meta content="draft-bg-onions-update-network-service-models-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.1
-    Python 3.12.11
-    ConfigArgParse 1.7
+  xml2rfc 3.34.0
+    Python 3.14.5
+    ConfigArgParse 1.7.5
     google-i18n-address 3.1.1
-    intervaltree 3.1.0
+    intervaltree 3.2.1
     Jinja2 3.1.6
-    lxml 5.3.1
-    platformdirs 4.4.0
+    lxml 6.1.1
+    natsort 8.4.0
+    platformdirs 4.10.0
     pycountry 24.6.1
-    PyYAML 6.0.2
-    requests 2.32.5
-    setuptools 80.9.0
-    wcwidth 0.2.13
+    PyYAML 6.0.3
+    requests 2.33.1
+    wcwidth 0.8.2
 -->
 <link href="draft-bg-onions-update-network-service-models.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -169,7 +169,7 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
   font-family: 'Oxygen Mono';
@@ -177,7 +177,8 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 }
 
 @font-face {
@@ -294,16 +295,19 @@ h1, h2, h3, h4, h5, h6 {
   font-size-adjust: 0.5;
   color: var(--title-color);
 }
-h1#title {
-  font-size: 32px;
-  line-height: 40px;
-  clear: both;
-}
-h1#title, h1#rfcnum {
-  margin: 1.5em 0 0.2em;
-}
-h1#rfcnum + h1#title {
-  margin: 0.2em 0;
+h1 {
+  &#title {
+    font-size: 32px;
+    line-height: 40px;
+    clear: both;
+    margin: 1.5em 0 0.2em;
+  }
+  &#rfcnum {
+    margin: 1.5em 0 0.2em;
+    & + h1#title {
+      margin: 0.2em 0;
+    }
+  }
 }
 
 h1, h2, h3 {
@@ -323,10 +327,10 @@ h4, h5, h6 {
 #abstract+p {
   font-size: 18px;
   line-height: 24px;
-}
-#abstract+p code, #abstract+p samp, #abstract+p tt {
-  font-size: 16px;
-  line-height: 0;
+  & code, & samp, & tt {
+    font-size: 16px;
+    line-height: 0;
+  }
 }
 
 p {
@@ -337,59 +341,59 @@ p {
 div {
   margin: 0;
 }
-.alignRight.art-text {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
-  padding: 0.5em 1em 0;
-  margin-bottom: 0.5em;
-}
-.alignRight.art-text pre {
-  padding: 0;
-  width: auto;
-}
 .alignRight {
   margin: 1em 0;
-}
-.alignRight > *:first-child {
-  border: none;
-  margin: 0;
-  float: right;
-  clear: both;
-}
-.alignRight > *:nth-child(2) {
-  clear: both;
-  display: block;
-  border: none;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    margin: 0;
+    float: right;
+    clear: both;
+  }
+  & > *:nth-child(2) {
+    clear: both;
+    display: block;
+    border: none;
+  }
 }
 svg {
   display: block;
-}
-/* font-family isn't space-separated, but =~ will have to do */
-svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
-  font-family: var(--font-mono);
-}
-.alignCenter.art-text {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
-  padding: 0.5em 1em 0;
-  margin-bottom: 0.5em;
-}
-.alignCenter.art-text pre {
-  padding: 0;
-  width: auto;
+  /* font-family isn't space-separated, but =~ will have to do */
+  &[font-family~="monospace" i], & [font-family~="monospace" i] {
+    font-family: var(--font-mono);
+  }
 }
 .alignCenter {
   margin: 1em 0;
-}
-.alignCenter > *:first-child {
-  border: none;
-  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
-     support flexbox yet.
-  */
-  display: table;
-  margin: 0 auto;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+       support flexbox yet.
+    */
+    display: table;
+    margin: 0 auto;
+  }
 }
 
 /* lists */
@@ -427,26 +431,25 @@ dl {
     --indent: 5ch;
     & > dt {
       min-width: calc(var(--indent) - 2ch);
+      float: none;
     }
-  }
-  &.olPercent > dt {
-    float: none;
   }
 
   dl > dd > & {
     margin-top: 0.5em;
     margin-bottom: 0;
   }
-}
-dl:not(.dlNewline) > dt {
-  float: left;
-  margin-right: 2ch;
-  min-width: 8ch;
-}
-dl > dd {
-  margin-bottom: .8em;
-  margin-left: var(--indent) !important; /* stupid element overrides */
-  min-height: 2ex;
+
+  &:not(.dlNewline) > dt {
+    float: left;
+    margin-right: 2ch;
+    min-width: 8ch;
+  }
+  & > dd {
+    margin-bottom: .8em;
+    margin-left: var(--indent) !important; /* stupid element overrides */
+    min-height: 2ex;
+  }
 }
 :is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0;
@@ -462,20 +465,22 @@ dl > dd {
 }
 
 /* links */
-a, a[href].selfRef:hover {
+a {
   text-decoration: none;
+  &[href] {
+    color: var(--link-color);
+    &:hover { text-decoration: underline; }
+    &.selfRef {
+      color: var(--text-color);
+      &:hover {
+        text-decoration: none;
+        background-color: var(--highlight-color);
+      }
+    }
+  }
 }
-a[href] {
-  color: var(--link-color);
-}
-a[href].selfRef, .iref + a[href].internal {
+.iref + a[href].internal {
   color: var(--text-color);
-}
-a[href]:hover {
-  text-decoration: underline;
-}
-a[href].selfRef:hover {
-  background-color: var(--highlight-color);
 }
 a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
   white-space: nowrap;
@@ -511,9 +516,9 @@ img {
 figure {
   margin: 0.5em 0;
   padding: 0;
-}
-figure blockquote {
-  margin: 0.8em 0.4em 0.4em;
+  & blockquote {
+    margin: 0.8em 0.4em 0.4em;
+  }
 }
 figcaption, caption {
   font-style: italic;
@@ -523,17 +528,19 @@ figcaption, caption {
 }
 @media screen {
   /* Auto-collapse boilerplate. */
-  :is(#status-of-memo, #copyright) p {
-    margin: -2px 0;
-    max-height: 0;
-    transition: max-height 2s ease, margin 0.5s ease 0.5s;
-    overflow: hidden;
-  }
-  :is(#status-of-memo, #copyright):hover p,
-  :is(#status-of-memo, #copyright) h2:target ~ p {
-    margin: 0.5em 0;
-    max-height: 500px;
-    overflow: auto;
+  :is(#status-of-memo, #copyright) {
+    & p {
+      margin: -2px 0;
+      max-height: 0;
+      transition: max-height 2s ease, margin 0.5s ease 0.5s;
+      overflow: hidden;
+    }
+    &:hover p,
+    & h2:target ~ p {
+      margin: 0.5em 0;
+      max-height: 500px;
+      overflow: auto;
+    }
   }
   pre, svg {
     display: inline-block;
@@ -569,6 +576,7 @@ aside, blockquote {
 }
 blockquote {
   margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
 }
 cite {
   display: block;
@@ -582,25 +590,17 @@ table {
   max-width: 100%;
   margin: 0 0 1em;
   border-collapse: collapse;
-}
-table.right {
-  margin-left: auto;
-}
-table.center {
-  margin-left: auto;
-  margin-right: auto;
-}
-table.left {
-  margin-right: auto;
-}
-table .text-left {
-  text-align: left;
-}
-table .text-center {
-  text-align: center;
-}
-table .text-right {
-  text-align: right;
+  &.right { margin-left: auto; }
+  &.center { margin-left: auto; margin-right: auto; }
+  &.left { margin-right: auto; }
+  & .text-left { text-align: left; }
+  & .text-center { text-align: center; }
+  & .text-right { text-align: right; }
+  & caption {
+    margin: 0;
+    padding: 3px 0 3px 1em;
+  }
+  & p { margin: 0; }
 }
 
 thead, tbody {
@@ -620,13 +620,6 @@ th {
 :is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
   background-color: var(--highlight-color);
 }
-table caption {
-  margin: 0;
-  padding: 3px 0 3px 1em;
-}
-table p {
-  margin: 0;
-}
 
 /* pilcrow */
 a.pilcrow {
@@ -637,18 +630,16 @@ a.pilcrow {
     color: var(--pilcrow-weak);
     &:hover { text-decoration: none; }
   }
-}
-@media not print {
-  :hover > a.pilcrow {
-    opacity: 1;
+  @media not print {
+    :hover > &, &:focus {
+      opacity: 1;
+    }
+    &[href]:hover {
+      color: var(--pilcrow-strong);
+      background-color: transparent;
+    }
   }
-  a.pilcrow[href]:hover {
-    color: var(--pilcrow-strong);
-    background-color: transparent;
-  }
-}
-@media print {
-  a.pilcrow {
+  @media print {
     display: none;
   }
 }
@@ -707,9 +698,9 @@ sub, sup {
   font-size: 0.9em;
   font-style: italic;
   margin-top: 2em;
-}
-.docInfo .prepared {
-  float: right;
+  & .prepared {
+    float: right;
+  }
 }
 
 /* table of contents */
@@ -799,23 +790,27 @@ hr.addr {
   max-width: calc(100% - 16px);
 }
 @media (min-width: 500px) {
-  #authors-addresses > section {
-    column-count: 2;
-    column-gap: 20px;
-  }
-  #authors-addresses > section > h2 {
-    column-span: all;
-  }
-  /* hack for break-inside: avoid-column */
-  #authors-addresses address {
-    display: inline-block;
-    break-inside: avoid-column;
+  #authors-addresses {
+    & > section {
+      column-count: 2;
+      column-gap: 20px;
+    }
+    & > section > h2 {
+      column-span: all;
+    }
+    /* hack for break-inside: avoid-column */
+    & address {
+      display: inline-block;
+      break-inside: avoid-column;
+    }
   }
 }
 
 /* Comments */
-.rfcEditorRemove p:first-of-type {
-  font-style: italic;
+.rfcEditorRemove {
+  & p:first-of-type {
+    font-style: italic;
+  }
 }
 .cref {
   background-color: rgba(249, 232, 105, 0.3);
@@ -826,19 +821,21 @@ hr.addr {
 }
 
 @media screen {
-  #toc nav {
-    font-family: var(--font-title);
-    font-weight: 360;
-    & > ul { margin-bottom: 2em; }
-    & ul {
-      margin: 0 0 0 4px;
-      & :is(p, li) {
-        margin: 2px 0;
+  #toc {
+    & nav {
+      font-family: var(--font-title);
+      font-weight: 360;
+      & > ul { margin-bottom: 2em; }
+      & ul {
+        margin: 0 0 0 4px;
+        & :is(p, li) {
+          margin: 2px 0;
+        }
       }
     }
-  }
-  #toc a.toplink {
-    float: right;
+    & a.toplink {
+      float: right;
+    }
   }
 }
 @media not screen {
@@ -859,54 +856,54 @@ hr.addr {
     margin: 0;
     border-bottom: 1px solid #ccc;
     opacity: 0.6;
-  }
-  #toc h2 {
-    margin: 0;
-    padding: 2px 0 2px 6px;
-    padding-right: 1em;
-    font-size: 18px;
-    line-height: 24px;
-    min-width: 190px;
-    text-align: right;
-    background-color: #444;
-    color: white;
-    cursor: pointer;
-    &::before { /* css hamburger */
-      float: right;
-      position: relative;
-      width: 1em;
-      height: 1px;
-      left: -164px;
-      margin: 8px 0 0 0;
-      background: white none repeat scroll 0 0;
-      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
-      content: "";
+    & h2 {
+      margin: 0;
+      padding: 2px 0 2px 6px;
+      padding-right: 1em;
+      font-size: 18px;
+      line-height: 24px;
+      min-width: 190px;
+      text-align: right;
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+      &::before { /* css hamburger */
+        float: right;
+        position: relative;
+        width: 1em;
+        height: 1px;
+        left: -164px;
+        margin: 8px 0 0 0;
+        background: white none repeat scroll 0 0;
+        box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+        content: "";
+      }
     }
-  }
-  #toc nav {
-    display: none;
-    background-color: var(--background-color);
-    padding: 0.5em 1em 1em;
-    overflow: auto;
-    overscroll-behavior: contain;
-    height: calc(100vh - 48px);
-    border-left: 1px solid #ddd;
-  }
-  #toc.active {
-    opacity: 1;
-    & nav { display: block; }
-  }
-  /* Make the collapsed ToC header render white on gray also when it's a link */
-  #toc h2 a,
-  #toc h2 a:is(:link, :focus, :hover),
-  #toc a.toplink,
-  #toc a.toplink:hover {
-    color: white;
-    background-color: #444;
-    text-decoration: none;
-  }
-  #toc a.toplink {
-    margin: 2px 0.5em 0;
+    & nav {
+      display: none;
+      background-color: var(--background-color);
+      padding: 0.5em 1em 1em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      height: calc(100vh - 48px);
+      border-left: 1px solid #ddd;
+    }
+    &.active {
+      opacity: 1;
+      & nav { display: block; }
+    }
+    /* Make the collapsed ToC header render white on gray also when it's a link */
+    & h2 a,
+    & h2 a:is(:link, :focus, :hover),
+    & a.toplink,
+    & a.toplink:hover {
+      color: white;
+      background-color: #444;
+      text-decoration: none;
+    }
+    & a.toplink {
+      margin: 2px 0.5em 0;
+    }
   }
 }
 
@@ -925,26 +922,26 @@ hr.addr {
     margin: 0;
     padding: 0;
     z-index: 1;
-  }
-  #toc h2 {
-    margin: 0;
-    padding: 0.25em 1em 1em 0;
-  }
-  #toc nav {
-    display: block;
-    height: calc(90vh - 84px);
-    bottom: 0;
-    padding: 0.5em 0 2em;
-    overflow: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
+    & h2 {
+      margin: 0;
+      padding: 0.25em 1em 1em 0;
+    }
+    & nav {
+      display: block;
+      height: calc(90vh - 84px);
+      bottom: 0;
+      padding: 0.5em 0 2em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+    & a.toplink {
+      margin: 8px 0.5em 0;
+    }
   }
   img { /* future proofing */
     max-width: 100%;
     height: auto;
-  }
-  #toc a.toplink {
-    margin: 8px 0.5em 0;
   }
 }
 
@@ -960,12 +957,13 @@ hr.addr {
   #n-copyright-notice {
     border-bottom: none;
   }
-  #toc, #n-introduction {
-    page-break-before: always;
-  }
   #toc {
+    page-break-before: always;
     border-top: none;
     padding-top: 0;
+  }
+  #n-introduction {
+    page-break-before: always;
   }
   figure, pre, .vcard {
     page-break-inside: avoid;
@@ -1027,17 +1025,19 @@ hr.addr {
 }
 
 /* SVG Trick: a prefix match works because only black and white are allowed */
-svg :is([stroke="black"], [stroke^="#000"]) {
-  stroke: var(--text-color);
-}
-svg :is([stroke="white"], [stroke^="#fff"]) {
-  stroke: var(--background-color);
-}
-svg :is([fill="black"], [fill^="#000"], :not([fill])) {
-  fill: var(--text-color);
-}
-svg :is([fill="white"], [fill^="#fff"]) {
-  fill: var(--background-color);
+svg {
+  & :is([stroke="black"], [stroke^="#000"]) {
+    stroke: var(--text-color);
+  }
+  & :is([stroke="white"], [stroke^="#fff"]) {
+    stroke: var(--background-color);
+  }
+  & :is([fill="black"], [fill^="#000"], :not([fill])) {
+    fill: var(--text-color);
+  }
+  & :is([fill="white"], [fill^="#fff"]) {
+    fill: var(--background-color);
+  }
 }
 </style>
 
@@ -1047,11 +1047,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Service &amp; Network Data Models Update</td>
-<td class="right">September 2025</td>
+<td class="right">July 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dios &amp; Barguil</td>
-<td class="center">Expires 20 March 2026</td>
+<td class="center">Expires 7 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-bg-onions-update-network-service-models-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-09-16" class="published">16 September 2025</time>
+<time datetime="2026-07-06" class="published">6 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-03-20">20 March 2026</time></dd>
+<dd class="expires"><time datetime="2027-01-07">7 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1096,8 +1096,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-note.1-2">
         The latest revision of this draft can be found at <span><a href="https://oscargdd.github.io/lxnm-bis/draft-bg-onions-update-network-service-models.html">https://oscargdd.github.io/lxnm-bis/draft-bg-onions-update-network-service-models.html</a></span>.
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-bg-onions-update-network-service-models/">https://datatracker.ietf.org/doc/draft-bg-onions-update-network-service-models/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
-<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/oscargdd/lxnm-bis">https://github.com/oscargdd/lxnm-bis</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">
+        Discussion of this document takes place on the
+        ONSEN Working Group mailing list (<span><a href="mailto:onions@ietf.orge.com">mailto:onions@ietf.orge.com</a></span>).<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/oscargdd/lxnm-bis">https://github.com/oscargdd/lxnm-bis</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1118,7 +1121,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1127,7 +1130,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2025 IETF Trust and the persons identified as the
+            Copyright (c) 2026 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1166,7 +1169,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-l3nm-enhancements" class="internal xref">L3NM Enhancements</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.2">
-                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.  <a href="#name-l2nm-enhancements" class="internal xref">L2NM Enhancements</a></p>
+                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.  <a href="#name-l2nm-enhancements" class="internal xref">## L2NM Enhancements</a></p>
 </li>
                 </ul>
 </li>
@@ -1327,55 +1330,113 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <div id="l2nm-enhancements">
 <section id="section-4.1.2">
           <h4 id="name-l2nm-enhancements">
-<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-l2nm-enhancements" class="section-name selfRef">L2NM Enhancements</a>
+<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-l2nm-enhancements" class="section-name selfRef">## L2NM Enhancements</a>
           </h4>
 <ul class="normal">
 <li class="normal" id="section-4.1.2-1.1">
-              <p id="section-4.1.2-1.1.1">EVPN Remote and Local eth-tag (Github issue #6)<a href="#section-4.1.2-1.1.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.1.1"><strong>EVPN remote and local eth-tag (GitHub issue #6)</strong><a href="#section-4.1.2-1.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.2-1.1.2.1">
+                  <p id="section-4.1.2-1.1.2.1.1">The current L2NM does not provide a way to express distinct local and remote eth-tag values per AC under the BGP-EVPN configuration.<a href="#section-4.1.2-1.1.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
 </li>
             <li class="normal" id="section-4.1.2-1.2">
-              <p id="section-4.1.2-1.2.1">Explicitly assign a RD at node level (Github issue #7)<a href="#section-4.1.2-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.2.1"><strong>Explicit assignment of an RD at node level (GitHub issue #7)</strong><a href="#section-4.1.2-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1.2-1.2.2.1">
-                  <p id="section-4.1.2-1.2.2.1.1">In the model, a RD must be always assigned via profile at service level. It is useful to be able to set a explicit RD directly at node level overriding the value of the profile. This way, a common profile can be used for all the services for use cases where only RD changes per node.<a href="#section-4.1.2-1.2.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-4.1.2-1.2.2.1.1">In the current model, a Route Distinguisher (RD) must always be assigned via a profile at the
+service level. It is useful to be able to set an explicit RD directly at the node level,
+overriding the value of the profile. This allows a common profile to be used across all
+services for use cases where only the RD changes per node.<a href="#section-4.1.2-1.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
               </ul>
 </li>
             <li class="normal" id="section-4.1.2-1.3">
-              <p id="section-4.1.2-1.3.1">Add support for Flexible Cross-Connect (FXC) Service (<span>[<a href="#RFC9744" class="cite xref">RFC9744</a>]</span>) (Github issue #8)<a href="#section-4.1.2-1.3.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.3.1"><strong>Support for Flexible Cross-Connect (FXC) services (<span>[<a href="#RFC9744" class="cite xref">RFC9744</a>]</span>) (GitHub issue #8)</strong><a href="#section-4.1.2-1.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.2-1.3.2.1">
+                  <p id="section-4.1.2-1.3.2.1.1">The L2NM should be enhanced with the support of EVPN Virtual Private Wire Service
+ (VPWS) service type specifically for multiplexing multiple attachment
+ circuits across different Ethernet Segments (ESs) and physical
+ interfaces into a single EVPN-VPWS service tunnel and still providing
+ Single-Active and All-Active multi-homing.<a href="#section-4.1.2-1.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
 </li>
             <li class="normal" id="section-4.1.2-1.4">
-              <p id="section-4.1.2-1.4.1">Add explanatory text for EVPN multihoming using LAG (Github issue #9)<a href="#section-4.1.2-1.4.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.4.1"><strong>Explanatory text for EVPN multihoming using LAG (GitHub issue #9)</strong><a href="#section-4.1.2-1.4.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.2-1.4.2.1">
+                  <p id="section-4.1.2-1.4.2.1.1">The L2NM allows a lag-interface-id to be configured per VPN network access, but does not
+currently document how this identifier is used to associate the LAG members across PEs that
+belong to the same multihoming group.<a href="#section-4.1.2-1.4.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
 </li>
             <li class="normal" id="section-4.1.2-1.5">
-              <p id="section-4.1.2-1.5.1">support for vlan-lists/vlan-ranges (Github issue #10)<a href="#section-4.1.2-1.5.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.5.1"><strong>Support for VLAN lists and VLAN ranges (GitHub issue #10)</strong><a href="#section-4.1.2-1.5.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1.2-1.5.2.1">
-                  <p id="section-4.1.2-1.5.2.1.1">When defining a Layer 2 service, sometimes multiple VLANs are mapped into a given service. It would be good to support this in the L2NM encapsulation stanza. Examples are as follows:<a href="#section-4.1.2-1.5.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-4.1.2-1.5.2.1.1">When defining a Layer 2 service, multiple VLANs are sometimes mapped into a single service.
+The L2NM encapsulation stanza should support this. Examples include:<a href="#section-4.1.2-1.5.2.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1.2-1.5.2.1.2.1">
-                      <p id="section-4.1.2-1.5.2.1.2.1.1">Typically used in single-tagged scenarios: vlan-id-list [ 200 210-219 222 234 240-249 ];<a href="#section-4.1.2-1.5.2.1.2.1.1" class="pilcrow">¶</a></p>
+                      <p id="section-4.1.2-1.5.2.1.2.1.1">Single-tagged scenarios:
+<code>vlan-id-list [ 200 210-219 222 234 240-249 ]</code><a href="#section-4.1.2-1.5.2.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
                     <li class="normal" id="section-4.1.2-1.5.2.1.2.2">
-                      <p id="section-4.1.2-1.5.2.1.2.2.1">Dual-tagged scenario, with s-vlan=430 and a list of c-vlans: vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ];<a href="#section-4.1.2-1.5.2.1.2.2.1" class="pilcrow">¶</a></p>
+                      <p id="section-4.1.2-1.5.2.1.2.2.1">Dual-tagged scenarios with an S-VLAN and a list of C-VLANs:
+<code>vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ]</code><a href="#section-4.1.2-1.5.2.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
                   </ul>
 </li>
               </ul>
 </li>
             <li class="normal" id="section-4.1.2-1.6">
-              <p id="section-4.1.2-1.6.1">SRv6 support for L2VPN (Github issue #15)<a href="#section-4.1.2-1.6.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.6.1"><strong>SRv6 support for L2VPN (GitHub issue #15)</strong><a href="#section-4.1.2-1.6.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.2-1.6.2.1">
+                  <p id="section-4.1.2-1.6.2.1.1">Segment Routing over IPv6 (SRv6) extends BGP-based L2VPN services with IPv6-native data plane
+semantics, as defined in<span>[<a href="#RFC9252" class="cite xref">RFC9252</a>]</span>. Operators deploying SRv6-based L2VPN services require the
+L2NM to express SRv6-specific configuration that is not currently supported by <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>.
+Two specific gaps have been identified:<a href="#section-4.1.2-1.6.2.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.2-1.6.2.1.2.1">
+                      <p id="section-4.1.2-1.6.2.1.2.1.1">SRv6 locator preferences.
+When multiple SRv6 locators are available on a PE, operators need a way to
+indicate which locator (or ordered list of locators) should be used for a given L2VPN service. This
+allows traffic from different services to be steered onto distinct locators -- for example, to
+differentiate by topology, slice, or administrative domain.<a href="#section-4.1.2-1.6.2.1.2.1.1" class="pilcrow">¶</a></p>
+</li>
+                    <li class="normal" id="section-4.1.2-1.6.2.1.2.2">
+                      <p id="section-4.1.2-1.6.2.1.2.2.1">Address-family-based SRv6 selection.
+SRv6 behavior may need to be configured independently per address family(e.g., for services that
+carry both IPv4 and IPv6 payloads). The model should allow the SRv6 configuration to be expressed
+per address family rather than as a single service-wide setting.<a href="#section-4.1.2-1.6.2.1.2.2.1" class="pilcrow">¶</a></p>
+</li>
+                  </ul>
+</li>
+              </ul>
 </li>
             <li class="normal" id="section-4.1.2-1.7">
-              <p id="section-4.1.2-1.7.1">Performance monitoring<a href="#section-4.1.2-1.7.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.7.1"><strong>Performance monitoring</strong><a href="#section-4.1.2-1.7.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1.2-1.7.2.1">
-                  <p id="section-4.1.2-1.7.2.1.1">ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> doesn't natively include OAM specifics.<a href="#section-4.1.2-1.7.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-4.1.2-1.7.2.1.1">ITU-T Y.1731 defines performance monitoring for Ethernet-based networks. L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>
+does not natively include OAM specifics, and standardized support is required.<a href="#section-4.1.2-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
               </ul>
 </li>
             <li class="normal" id="section-4.1.2-1.8">
-              <p id="section-4.1.2-1.8.1">Add EVI identifier to differentiate it from VPN-ID. Each EVI maps to a specific EVPN service (e.g., a Layer 2 VPN bridging a particular VLAN across the EVPN fabric) (Github issue #24).<a href="#section-4.1.2-1.8.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-1.8.1"><strong>EVI identifier to differentiate from VPN-ID (GitHub issue #24)</strong><a href="#section-4.1.2-1.8.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.2-1.8.2.1">
+                  <p id="section-4.1.2-1.8.2.1.1">Each EVI maps to a specific EVPN service (e.g., a Layer 2 VPN bridging a particular VLAN
+across the EVPN fabric). An explicit EVI identifier should be added to the model to
+distinguish it from the VPN-ID.<a href="#section-4.1.2-1.8.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
 </li>
           </ul>
 </section>
@@ -1387,14 +1448,56 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-new-functionalities-require">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-new-functionalities-require" class="section-name selfRef">New Functionalities Required to Fully Support Connectivity Services</a>
         </h3>
-<p id="section-4.2-1">The realization of advanced connectivity services requires, in addition to the configurations expressed in LxNM models:
-* Definition of Access Control lists and prefix Sets:
-    + Connectivity services often include mechanisms to filter forwarding packets. The LxNM models allow to include a 'forwarding-profile-identifier'. A forwarding profile refers to the policies that apply to the forwarding of packets conveyed within a VPN. Such policies may consist, for example, of applying Access Control Lists (ACLs). However, currently there is not an ACL network service model (even though a device level ACL model exists) that allows to manipulate such ACLs and sets when creating the service.
-    + ACLs and Prefix sets can be reused among services. Thus, they need to be handled at a network level, regardless of the actual service using them.
-* Definition of routing policies, including community sets, as path sets, etc:
-    + Advanced connectivity services require the creation of complex policies. The LxNM models allows to indicate which policy (or policies) should be used. However, LxNM does not include the definition of policies. There are a set a device models which could be used as a base for the network model.
-* Pre and post checks before and after deploying a service in the network.
-* Preparation of the interface. Prior to the application of the entire configuration profile.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">The realization of advanced connectivity services requires, in addition to the configurations
+expressed in the LxNM models, the following capabilities:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.1">
+            <p id="section-4.2-2.1.1"><strong>Definition of Access Control Lists and Prefix Sets:</strong><a href="#section-4.2-2.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.1.2.1">
+                <p id="section-4.2-2.1.2.1.1">Connectivity services often include mechanisms to filter forwarded packets. The LxNM models
+allow a service to reference a <code>forwarding-profile-identifier</code>, which refers to the policies
+that apply to the forwarding of packets conveyed within a VPN. Such policies may consist, for
+example, of applying Access Control Lists (ACLs). However, there is currently no ACL network
+service model -- although a device-level ACL model exists -- that allows ACLs and prefix sets
+to be manipulated when creating the service.<a href="#section-4.2-2.1.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.2-2.1.2.2">
+                <p id="section-4.2-2.1.2.2.1">ACLs and prefix sets can be reused across services. Therefore, they need to be managed at the
+network level, independently of the specific service using them.<a href="#section-4.2-2.1.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="normal" id="section-4.2-2.2">
+            <p id="section-4.2-2.2.1"><strong>Definition of routing policies, including community sets and AS-path sets:</strong><a href="#section-4.2-2.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.2.2.1">
+                <p id="section-4.2-2.2.2.1.1">Advanced connectivity services require the definition of complex routing policies. The LxNM
+models allow the operator to indicate which policy (or policies) should be applied, but do
+not include the definition of those policies. A set of device-level models exists that could
+be used as a basis for a corresponding network-level model.<a href="#section-4.2-2.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="normal" id="section-4.2-2.3">
+            <p id="section-4.2-2.3.1"><strong>Pre- and post-deployment checks:</strong><a href="#section-4.2-2.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.3.2.1">
+                <p id="section-4.2-2.3.2.1.1">Mechanisms to perform validation checks before and after deploying a service in the network.
+For example, e.g., reachability, capacity, or configuration consistency.<a href="#section-4.2-2.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="normal" id="section-4.2-2.4">
+            <p id="section-4.2-2.4.1"><strong>Interface preparation:</strong><a href="#section-4.2-2.4.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.4.2.1">
+                <p id="section-4.2-2.4.2.1.1">Mechanisms to prepare an interface prior to the application of the full service configuration
+profile. For exampleÑ enabling the interface, setting MTU, or default VLAN configuration.<a href="#section-4.2-2.4.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+        </ul>
 </section>
 </div>
 <div id="status-of-the-intended-network-service">
@@ -1402,39 +1505,64 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-status-of-the-intended-netw">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-status-of-the-intended-netw" class="section-name selfRef">Status of the Intended Network Service</a>
         </h3>
-<p id="section-4.3-1">The Network Service Yang models represent an intent of the realization of service. A controller, after an instance of the network service yang intent has been created, will derive the necessary device level configurations and apply them to the necessary devices. However, the implementations reported a set of open issues which are related to the status. Those issues are not solved today and are left to implementation choices and solutions.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">Status of the Intended Network Service<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">The Network Service YANG models represent the <em>intent</em> for the realization of a service. After an
+instance of a network service YANG intent has been created, a controller derives the necessary
+device-level configurations and applies them to the relevant devices. However, implementations
+have reported a set of open issues related to the status of the intended service. These issues are
+not addressed today and are left to implementation choices.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.3-2.1">
-            <p id="section-4.3-2.1.1">Is the Service running on the Network? (Github issue #5)<a href="#section-4.3-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.3-3.1">
+            <p id="section-4.3-3.1.1"><strong>Is the service running on the network? (GitHub issue #5)</strong><a href="#section-4.3-3.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.3-2.1.2.1">
-                <p id="section-4.3-2.1.2.1.1">How can the northbound system be assured with 100% certainty that a configuration has been successfully installed on the network device?<a href="#section-4.3-2.1.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.3-3.1.2.1">
+                <p id="section-4.3-3.1.2.1.1">How can the northbound system be assured, with full certainty, that a configuration has been
+successfully installed on the network device?<a href="#section-4.3-3.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.3-2.1.2.2">
-                <p id="section-4.3-2.1.2.2.1">What mechanisms or feedback loops exist to confirm successful configuration deployment beyond simple acknowledgment?<a href="#section-4.3-2.1.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.3-3.1.2.2">
+                <p id="section-4.3-3.1.2.2.1">What mechanisms or feedback loops exist to confirm successful configuration deployment beyond
+a simple acknowledgement?<a href="#section-4.3-3.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.3-2.1.2.3">
-                <p id="section-4.3-2.1.2.3.1">How can the system can handle transient errors or partial configuration applications from the model perspective?<a href="#section-4.3-2.1.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.3-3.1.2.3">
+                <p id="section-4.3-3.1.2.3.1">How can the model represent and handle transient errors or partial configuration
+applications?<a href="#section-4.3-3.1.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.3-2.1.2.4">
-                <p id="section-4.3-2.1.2.4.1">Are there specific operational attributes that can be used to reflect the real-time status of the configuration?<a href="#section-4.3-2.1.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.3-3.1.2.4">
+                <p id="section-4.3-3.1.2.4.1">Are there specific operational attributes that can be used to reflect the real-time status of
+the configuration?<a href="#section-4.3-3.1.2.4.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.3-2.1.2.5">
-                <p id="section-4.3-2.1.2.5.1">Does the network element provide any operational state parameters or notifications that indicate whether the configuration is active, pending, or has failed?<a href="#section-4.3-2.1.2.5.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.3-3.1.2.5">
+                <p id="section-4.3-3.1.2.5.1">Does the network element provide any operational state parameters or notifications that
+indicate whether the configuration is active, pending, or has failed?<a href="#section-4.3-3.1.2.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.3-2.1.2.6">
-                <p id="section-4.3-2.1.2.6.1">If a configuration is manually removed via CLI at the network device, is there a mechanism to reflect this change northbound?<a href="#section-4.3-2.1.2.6.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.3-3.1.2.6">
+                <p id="section-4.3-3.1.2.6.1">If a configuration is manually removed via CLI at the network device, is there a mechanism to
+reflect this change northbound?<a href="#section-4.3-3.1.2.6.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="section-4.3-2.2">
-            <p id="section-4.3-2.2.1">Operational Status Clarification (Github issue #4)<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.3-3.2">
+            <p id="section-4.3-3.2.1"><strong>Operational status clarification (GitHub issue #4)</strong><a href="#section-4.3-3.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.3-2.2.2.1">
-                <p id="section-4.3-2.2.2.1.1">Understanding the interrelationships between the operational status of VPN services, VPN nodes, and VPN network access is another significant operational gap. The status of a VPN service may depend on the status of the underlying VPN nodes and the network access provided to the VPN.<a href="#section-4.3-2.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.3-3.2.2.1">
+                <p id="section-4.3-3.2.2.1.1">The interrelationships between the operational status of VPN services, VPN nodes, and VPN
+network access points represent another significant operational gap.<a href="#section-4.3-3.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.3-2.2.2.2">
-                <p id="section-4.3-2.2.2.2.1">To address this gap, IETF should establish clear dependencies and correlations between the various operational statuses. This could involve defining specific criteria for determining the overall status of a VPN service based on the status of its constituent VPN nodes and network access components. Moreover, real-time monitoring and correlation of status information can provide insights into the health and performance of VPN services.<a href="#section-4.3-2.2.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.3-3.2.2.2">
+                <p id="section-4.3-3.2.2.2.1">The status of a VPN service may depend on the status of the underlying VPN nodes and the
+network access provided to the VPN.<a href="#section-4.3-3.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.3-3.2.2.3">
+                <p id="section-4.3-3.2.2.3.1">To address this gap, the L3NM should establish clear dependencies and correlations between
+the various operational statuses.<a href="#section-4.3-3.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.3-3.2.2.4">
+                <p id="section-4.3-3.2.2.4.1">This could involve defining specific criteria for determining the overall status of a VPN
+service based on the status of its constituent VPN nodes and network access components.<a href="#section-4.3-3.2.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.3-3.2.2.5">
+                <p id="section-4.3-3.2.2.5.1">In addition, real-time monitoring and correlation of status information can provide insights
+into the health and performance of VPN services.<a href="#section-4.3-3.2.2.5.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
