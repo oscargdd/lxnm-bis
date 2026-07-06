@@ -10,16 +10,16 @@ date:
 consensus: true
 v: 3
 # area: AREA
-# workgroup: ONIONS
+# workgroup: ONSEN
 keyword:
  - Network Models
  - L3NM
  - L2NM
 venue:
-#  group: ONIONS
-#  type: Working Group
-#  mail: WG@example.com
-#  arch: https://example.com/WG
+  group: ONSEN
+  type: Working Group
+  mail: onions@ietf.orge.com
+  # arch: https://example.com/WG
   github: "oscargdd/lxnm-bis"
   latest: "https://oscargdd.github.io/lxnm-bis/draft-bg-onions-update-network-service-models.html"
 
@@ -98,49 +98,127 @@ Implementations of LxNM models in controllers required new functionalities which
      + For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles ( ipmsi and spmsi ) . There is no YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added.
 * Extend guidance of how the network models can be used to/and operationalize Inter-AS VPN options (A, B, and C as defined in {{?RFC4364}}) using the L3NM framework (Github issue #25).
 
-### L2NM Enhancements
+### ## L2NM Enhancements
 
+* **EVPN remote and local eth-tag (GitHub issue #6)**
+  + The current L2NM does not provide a way to express distinct local and remote eth-tag values per AC under the BGP-EVPN configuration.
 
-* EVPN Remote and Local eth-tag (Github issue #6)
-* Explicitly assign a RD at node level (Github issue #7)
-   + In the model, a RD must be always assigned via profile at service level. It is useful to be able to set a explicit RD directly at node level overriding the value of the profile. This way, a common profile can be used for all the services for use cases where only RD changes per node.
+* **Explicit assignment of an RD at node level (GitHub issue #7)**
+  + In the current model, a Route Distinguisher (RD) must always be assigned via a profile at the
+    service level. It is useful to be able to set an explicit RD directly at the node level,
+    overriding the value of the profile. This allows a common profile to be used across all
+    services for use cases where only the RD changes per node.
 
-* Add support for Flexible Cross-Connect (FXC) Service ({{?RFC9744}}) (Github issue #8)
-* Add explanatory text for EVPN multihoming using LAG (Github issue #9)
-* support for vlan-lists/vlan-ranges (Github issue #10)
-   + When defining a Layer 2 service, sometimes multiple VLANs are mapped into a given service. It would be good to support this in the L2NM encapsulation stanza. Examples are as follows:
-       - Typically used in single-tagged scenarios: vlan-id-list [ 200 210-219 222 234 240-249 ];
-       - Dual-tagged scenario, with s-vlan=430 and a list of c-vlans: vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ];
-* SRv6 support for L2VPN (Github issue #15)
-* Performance monitoring
-    + ITU-T Y.1731 performance monitoring in Ethernet based networks . L2NM itself {{?RFC9291}} doesn't natively include OAM specifics.
-* Add EVI identifier to differentiate it from VPN-ID. Each EVI maps to a specific EVPN service (e.g., a Layer 2 VPN bridging a particular VLAN across the EVPN fabric) (Github issue #24).
+* **Support for Flexible Cross-Connect (FXC) services ({{?RFC9744}}) (GitHub issue #8)**
+  + The L2NM should be enhanced with the support of EVPN Virtual Private Wire Service
+   (VPWS) service type specifically for multiplexing multiple attachment
+   circuits across different Ethernet Segments (ESs) and physical
+   interfaces into a single EVPN-VPWS service tunnel and still providing
+   Single-Active and All-Active multi-homing.
+
+* **Explanatory text for EVPN multihoming using LAG (GitHub issue #9)**
+  + The L2NM allows a lag-interface-id to be configured per VPN network access, but does not
+    currently document how this identifier is used to associate the LAG members across PEs that
+    belong to the same multihoming group.
+
+* **Support for VLAN lists and VLAN ranges (GitHub issue #10)**
+  + When defining a Layer 2 service, multiple VLANs are sometimes mapped into a single service.
+    The L2NM encapsulation stanza should support this. Examples include:
+    - Single-tagged scenarios:
+      `vlan-id-list [ 200 210-219 222 234 240-249 ]`
+    - Dual-tagged scenarios with an S-VLAN and a list of C-VLANs:
+      `vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ]`
+
+* **SRv6 support for L2VPN (GitHub issue #15)**
+  + Segment Routing over IPv6 (SRv6) extends BGP-based L2VPN services with IPv6-native data plane
+    semantics, as defined in{{?RFC9252}}. Operators deploying SRv6-based L2VPN services require the
+    L2NM to express SRv6-specific configuration that is not currently supported by {{?RFC9291}}.
+    Two specific gaps have been identified:
+
+    - SRv6 locator preferences.
+    When multiple SRv6 locators are available on a PE, operators need a way to
+    indicate which locator (or ordered list of locators) should be used for a given L2VPN service. This
+    allows traffic from different services to be steered onto distinct locators -- for example, to
+    differentiate by topology, slice, or administrative domain.
+
+    - Address-family-based SRv6 selection.
+    SRv6 behavior may need to be configured independently per address family(e.g., for services that
+    carry both IPv4 and IPv6 payloads). The model should allow the SRv6 configuration to be expressed
+    per address family rather than as a single service-wide setting.
+
+* **Performance monitoring**
+  + ITU-T Y.1731 defines performance monitoring for Ethernet-based networks. L2NM {{?RFC9291}}
+    does not natively include OAM specifics, and standardized support is required.
+
+* **EVI identifier to differentiate from VPN-ID (GitHub issue #24)**
+  + Each EVI maps to a specific EVPN service (e.g., a Layer 2 VPN bridging a particular VLAN
+    across the EVPN fabric). An explicit EVI identifier should be added to the model to
+    distinguish it from the VPN-ID.
 
 ## New Functionalities Required to Fully Support Connectivity Services
 
-The realization of advanced connectivity services requires, in addition to the configurations expressed in LxNM models:
-* Definition of Access Control lists and prefix Sets:
-    + Connectivity services often include mechanisms to filter forwarding packets. The LxNM models allow to include a 'forwarding-profile-identifier'. A forwarding profile refers to the policies that apply to the forwarding of packets conveyed within a VPN. Such policies may consist, for example, of applying Access Control Lists (ACLs). However, currently there is not an ACL network service model (even though a device level ACL model exists) that allows to manipulate such ACLs and sets when creating the service.
-    + ACLs and Prefix sets can be reused among services. Thus, they need to be handled at a network level, regardless of the actual service using them.
-* Definition of routing policies, including community sets, as path sets, etc:
-    + Advanced connectivity services require the creation of complex policies. The LxNM models allows to indicate which policy (or policies) should be used. However, LxNM does not include the definition of policies. There are a set a device models which could be used as a base for the network model.
-* Pre and post checks before and after deploying a service in the network.
-* Preparation of the interface. Prior to the application of the entire configuration profile.
+The realization of advanced connectivity services requires, in addition to the configurations
+expressed in the LxNM models, the following capabilities:
+
+* **Definition of Access Control Lists and Prefix Sets:**
+  + Connectivity services often include mechanisms to filter forwarded packets. The LxNM models
+    allow a service to reference a `forwarding-profile-identifier`, which refers to the policies
+    that apply to the forwarding of packets conveyed within a VPN. Such policies may consist, for
+    example, of applying Access Control Lists (ACLs). However, there is currently no ACL network
+    service model -- although a device-level ACL model exists -- that allows ACLs and prefix sets
+    to be manipulated when creating the service.
+  + ACLs and prefix sets can be reused across services. Therefore, they need to be managed at the
+    network level, independently of the specific service using them.
+
+* **Definition of routing policies, including community sets and AS-path sets:**
+  + Advanced connectivity services require the definition of complex routing policies. The LxNM
+    models allow the operator to indicate which policy (or policies) should be applied, but do
+    not include the definition of those policies. A set of device-level models exists that could
+    be used as a basis for a corresponding network-level model.
+
+* **Pre- and post-deployment checks:**
+  + Mechanisms to perform validation checks before and after deploying a service in the network.
+    For example, e.g., reachability, capacity, or configuration consistency.
+
+* **Interface preparation:**
+  + Mechanisms to prepare an interface prior to the application of the full service configuration
+    profile. For exampleÑ enabling the interface, setting MTU, or default VLAN configuration.
 
 ## Status of the Intended Network Service
 
-The Network Service Yang models represent an intent of the realization of service. A controller, after an instance of the network service yang intent has been created, will derive the necessary device level configurations and apply them to the necessary devices. However, the implementations reported a set of open issues which are related to the status. Those issues are not solved today and are left to implementation choices and solutions.
+Status of the Intended Network Service
 
-* Is the Service running on the Network? (Github issue #5)
-   + How can the northbound system be assured with 100% certainty that a configuration has been successfully installed on the network device?
-   + What mechanisms or feedback loops exist to confirm successful configuration deployment beyond simple acknowledgment?
-   + How can the system can handle transient errors or partial configuration applications from the model perspective?
-   + Are there specific operational attributes that can be used to reflect the real-time status of the configuration?
-   + Does the network element provide any operational state parameters or notifications that indicate whether the configuration is active, pending, or has failed?
-   + If a configuration is manually removed via CLI at the network device, is there a mechanism to reflect this change northbound?
-* Operational Status Clarification (Github issue #4)
-   + Understanding the interrelationships between the operational status of VPN services, VPN nodes, and VPN network access is another significant operational gap. The status of a VPN service may depend on the status of the underlying VPN nodes and the network access provided to the VPN.
-   + To address this gap, IETF should establish clear dependencies and correlations between the various operational statuses. This could involve defining specific criteria for determining the overall status of a VPN service based on the status of its constituent VPN nodes and network access components. Moreover, real-time monitoring and correlation of status information can provide insights into the health and performance of VPN services.
+The Network Service YANG models represent the *intent* for the realization of a service. After an
+instance of a network service YANG intent has been created, a controller derives the necessary
+device-level configurations and applies them to the relevant devices. However, implementations
+have reported a set of open issues related to the status of the intended service. These issues are
+not addressed today and are left to implementation choices.
+
+* **Is the service running on the network? (GitHub issue #5)**
+  + How can the northbound system be assured, with full certainty, that a configuration has been
+    successfully installed on the network device?
+  + What mechanisms or feedback loops exist to confirm successful configuration deployment beyond
+    a simple acknowledgement?
+  + How can the model represent and handle transient errors or partial configuration
+    applications?
+  + Are there specific operational attributes that can be used to reflect the real-time status of
+    the configuration?
+  + Does the network element provide any operational state parameters or notifications that
+    indicate whether the configuration is active, pending, or has failed?
+  + If a configuration is manually removed via CLI at the network device, is there a mechanism to
+    reflect this change northbound?
+
+* **Operational status clarification (GitHub issue #4)**
+  + The interrelationships between the operational status of VPN services, VPN nodes, and VPN
+    network access points represent another significant operational gap.
+  + The status of a VPN service may depend on the status of the underlying VPN nodes and the
+    network access provided to the VPN.
+  + To address this gap, the L3NM should establish clear dependencies and correlations between
+    the various operational statuses.
+  + This could involve defining specific criteria for determining the overall status of a VPN
+    service based on the status of its constituent VPN nodes and network access components.
+  + In addition, real-time monitoring and correlation of status information can provide insights
+    into the health and performance of VPN services.
 
 ## Summary
 
