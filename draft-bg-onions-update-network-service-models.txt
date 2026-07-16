@@ -5,8 +5,8 @@
 Network Working Group                                      O. G. D. Dios
 Internet-Draft                                                Telefonica
 Intended status: Informational                                S. Barguil
-Expires: 7 January 2027                                            Nokia
-                                                             6 July 2026
+Expires: 17 January 2027                                           Nokia
+                                                            16 July 2026
 
 
            An Update of Service and Network YANG Data Models
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2027.
+   This Internet-Draft will expire on 17 January 2027.
 
 Copyright Notice
 
@@ -76,7 +76,7 @@ Table of Contents
    4.  Observations and new requirements
      4.1.  Enhancements to LxSM and LxNM
        4.1.1.  L3NM Enhancements
-       4.1.2.  ## L2NM Enhancements
+       4.1.2.  L2NM Enhancements
      4.2.  New Functionalities Required to Fully Support Connectivity
            Services
      4.3.  Status of the Intended Network Service
@@ -195,15 +195,15 @@ Table of Contents
       operationalize Inter-AS VPN options (A, B, and C as defined in
       [RFC4364]) using the L3NM framework (Github issue #25).
 
-4.1.2.  ## L2NM Enhancements
+4.1.2.  L2NM Enhancements
 
-   *  *EVPN remote and local eth-tag (GitHub issue #6)*
+   *  EVPN remote and local eth-tag (GitHub issue #6)
 
       -  The current L2NM does not provide a way to express distinct
          local and remote eth-tag values per AC under the BGP-EVPN
          configuration.
 
-   *  *Explicit assignment of an RD at node level (GitHub issue #7)*
+   *  Explicit assignment of an RD at node level (GitHub issue #7)
 
       -  In the current model, a Route Distinguisher (RD) must always be
          assigned via a profile at the service level.  It is useful to
@@ -212,8 +212,8 @@ Table of Contents
          profile to be used across all services for use cases where only
          the RD changes per node.
 
-   *  *Support for Flexible Cross-Connect (FXC) services ([RFC9744])
-      (GitHub issue #8)*
+   *  Support for Flexible Cross-Connect (FXC) services ([RFC9744])
+      (GitHub issue #8)
 
       -  The L2NM should be enhanced with the support of EVPN Virtual
          Private Wire Service (VPWS) service type specifically for
@@ -222,15 +222,14 @@ Table of Contents
          EVPN-VPWS service tunnel and still providing Single-Active and
          All-Active multi-homing.
 
-   *  *Explanatory text for EVPN multihoming using LAG (GitHub issue
-      #9)*
+   *  Explanatory text for EVPN multihoming using LAG (GitHub issue #9)
 
       -  The L2NM allows a lag-interface-id to be configured per VPN
          network access, but does not currently document how this
          identifier is used to associate the LAG members across PEs that
          belong to the same multihoming group.
 
-   *  *Support for VLAN lists and VLAN ranges (GitHub issue #10)*
+   *  Support for VLAN lists and VLAN ranges (GitHub issue #10)
 
       -  When defining a Layer 2 service, multiple VLANs are sometimes
          mapped into a single service.  The L2NM encapsulation stanza
@@ -243,7 +242,7 @@ Table of Contents
             vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249
             ]
 
-   *  *SRv6 support for L2VPN (GitHub issue #15)*
+   *  SRv6 support for L2VPN (GitHub issue #15)
 
       -  Segment Routing over IPv6 (SRv6) extends BGP-based L2VPN
          services with IPv6-native data plane semantics, as defined
@@ -266,13 +265,13 @@ Table of Contents
             should allow the SRv6 configuration to be expressed per
             address family rather than as a single service-wide setting.
 
-   *  *Performance monitoring*
+   *  Performance monitoring
 
       -  ITU-T Y.1731 defines performance monitoring for Ethernet-based
          networks.  L2NM [RFC9291] does not natively include OAM
          specifics, and standardized support is required.
 
-   *  *EVI identifier to differentiate from VPN-ID (GitHub issue #24)*
+   *  EVI identifier to differentiate from VPN-ID (GitHub issue #24)
 
       -  Each EVI maps to a specific EVPN service (e.g., a Layer 2 VPN
          bridging a particular VLAN across the EVPN fabric).  An
@@ -286,7 +285,7 @@ Table of Contents
    addition to the configurations expressed in the LxNM models, the
    following capabilities:
 
-   *  *Definition of Access Control Lists and Prefix Sets:*
+   *  Definition of Access Control Lists and Prefix Sets:
 
       -  Connectivity services often include mechanisms to filter
          forwarded packets.  The LxNM models allow a service to
@@ -302,8 +301,8 @@ Table of Contents
          they need to be managed at the network level, independently of
          the specific service using them.
 
-   *  *Definition of routing policies, including community sets and AS-
-      path sets:*
+   *  Definition of routing policies, including community sets and AS-
+      path sets:
 
       -  Advanced connectivity services require the definition of
          complex routing policies.  The LxNM models allow the operator
@@ -312,13 +311,13 @@ Table of Contents
          device-level models exists that could be used as a basis for a
          corresponding network-level model.
 
-   *  *Pre- and post-deployment checks:*
+   *  Pre- and post-deployment checks:
 
       -  Mechanisms to perform validation checks before and after
          deploying a service in the network.  For example, e.g.,
          reachability, capacity, or configuration consistency.
 
-   *  *Interface preparation:*
+   *  Interface preparation:
 
       -  Mechanisms to prepare an interface prior to the application of
          the full service configuration profile.  For exampleÑ enabling
@@ -336,7 +335,7 @@ Table of Contents
    to the status of the intended service.  These issues are not
    addressed today and are left to implementation choices.
 
-   *  *Is the service running on the network?  (GitHub issue #5)*
+   *  Is the service running on the network?  (GitHub issue #5)
 
       -  How can the northbound system be assured, with full certainty,
          that a configuration has been successfully installed on the
@@ -358,7 +357,7 @@ Table of Contents
       -  If a configuration is manually removed via CLI at the network
          device, is there a mechanism to reflect this change northbound?
 
-   *  *Operational status clarification (GitHub issue #4)*
+   *  Operational status clarification (GitHub issue #4)
 
       -  The interrelationships between the operational status of VPN
          services, VPN nodes, and VPN network access points represent
