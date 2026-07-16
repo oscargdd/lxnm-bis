@@ -98,30 +98,30 @@ Implementations of LxNM models in controllers required new functionalities which
      + For L3VPN with multicast, one implementation has reported that Cisco MVPN augmentation were added to include various profiles ( ipmsi and spmsi ) . There is no YANG module from IETF as of today that supports full MVPN/SPMSI/IPMSI under L3NM directly. Standardized profiles are required to be added.
 * Extend guidance of how the network models can be used to/and operationalize Inter-AS VPN options (A, B, and C as defined in {{?RFC4364}}) using the L3NM framework (Github issue #25).
 
-### ## L2NM Enhancements
+### L2NM Enhancements
 
-* **EVPN remote and local eth-tag (GitHub issue #6)**
+* EVPN remote and local eth-tag (GitHub issue #6)
   + The current L2NM does not provide a way to express distinct local and remote eth-tag values per AC under the BGP-EVPN configuration.
 
-* **Explicit assignment of an RD at node level (GitHub issue #7)**
+* Explicit assignment of an RD at node level (GitHub issue #7)
   + In the current model, a Route Distinguisher (RD) must always be assigned via a profile at the
     service level. It is useful to be able to set an explicit RD directly at the node level,
     overriding the value of the profile. This allows a common profile to be used across all
     services for use cases where only the RD changes per node.
 
-* **Support for Flexible Cross-Connect (FXC) services ({{?RFC9744}}) (GitHub issue #8)**
+* Support for Flexible Cross-Connect (FXC) services ({{?RFC9744}}) (GitHub issue #8)
   + The L2NM should be enhanced with the support of EVPN Virtual Private Wire Service
    (VPWS) service type specifically for multiplexing multiple attachment
    circuits across different Ethernet Segments (ESs) and physical
    interfaces into a single EVPN-VPWS service tunnel and still providing
    Single-Active and All-Active multi-homing.
 
-* **Explanatory text for EVPN multihoming using LAG (GitHub issue #9)**
+* Explanatory text for EVPN multihoming using LAG (GitHub issue #9)
   + The L2NM allows a lag-interface-id to be configured per VPN network access, but does not
     currently document how this identifier is used to associate the LAG members across PEs that
     belong to the same multihoming group.
 
-* **Support for VLAN lists and VLAN ranges (GitHub issue #10)**
+* Support for VLAN lists and VLAN ranges (GitHub issue #10)
   + When defining a Layer 2 service, multiple VLANs are sometimes mapped into a single service.
     The L2NM encapsulation stanza should support this. Examples include:
     - Single-tagged scenarios:
@@ -129,7 +129,7 @@ Implementations of LxNM models in controllers required new functionalities which
     - Dual-tagged scenarios with an S-VLAN and a list of C-VLANs:
       `vlan-tags outer 430 inner-list [ 200 210-219 222 234 240-249 ]`
 
-* **SRv6 support for L2VPN (GitHub issue #15)**
+* SRv6 support for L2VPN (GitHub issue #15)
   + Segment Routing over IPv6 (SRv6) extends BGP-based L2VPN services with IPv6-native data plane
     semantics, as defined in{{?RFC9252}}. Operators deploying SRv6-based L2VPN services require the
     L2NM to express SRv6-specific configuration that is not currently supported by {{?RFC9291}}.
@@ -146,11 +146,11 @@ Implementations of LxNM models in controllers required new functionalities which
     carry both IPv4 and IPv6 payloads). The model should allow the SRv6 configuration to be expressed
     per address family rather than as a single service-wide setting.
 
-* **Performance monitoring**
+* Performance monitoring
   + ITU-T Y.1731 defines performance monitoring for Ethernet-based networks. L2NM {{?RFC9291}}
     does not natively include OAM specifics, and standardized support is required.
 
-* **EVI identifier to differentiate from VPN-ID (GitHub issue #24)**
+* EVI identifier to differentiate from VPN-ID (GitHub issue #24)
   + Each EVI maps to a specific EVPN service (e.g., a Layer 2 VPN bridging a particular VLAN
     across the EVPN fabric). An explicit EVI identifier should be added to the model to
     distinguish it from the VPN-ID.
@@ -160,7 +160,7 @@ Implementations of LxNM models in controllers required new functionalities which
 The realization of advanced connectivity services requires, in addition to the configurations
 expressed in the LxNM models, the following capabilities:
 
-* **Definition of Access Control Lists and Prefix Sets:**
+* Definition of Access Control Lists and Prefix Sets:
   + Connectivity services often include mechanisms to filter forwarded packets. The LxNM models
     allow a service to reference a `forwarding-profile-identifier`, which refers to the policies
     that apply to the forwarding of packets conveyed within a VPN. Such policies may consist, for
@@ -170,17 +170,17 @@ expressed in the LxNM models, the following capabilities:
   + ACLs and prefix sets can be reused across services. Therefore, they need to be managed at the
     network level, independently of the specific service using them.
 
-* **Definition of routing policies, including community sets and AS-path sets:**
+* Definition of routing policies, including community sets and AS-path sets:
   + Advanced connectivity services require the definition of complex routing policies. The LxNM
     models allow the operator to indicate which policy (or policies) should be applied, but do
     not include the definition of those policies. A set of device-level models exists that could
     be used as a basis for a corresponding network-level model.
 
-* **Pre- and post-deployment checks:**
+* Pre- and post-deployment checks:
   + Mechanisms to perform validation checks before and after deploying a service in the network.
     For example, e.g., reachability, capacity, or configuration consistency.
 
-* **Interface preparation:**
+* Interface preparation:
   + Mechanisms to prepare an interface prior to the application of the full service configuration
     profile. For exampleÑ enabling the interface, setting MTU, or default VLAN configuration.
 
@@ -194,7 +194,7 @@ device-level configurations and applies them to the relevant devices. However, i
 have reported a set of open issues related to the status of the intended service. These issues are
 not addressed today and are left to implementation choices.
 
-* **Is the service running on the network? (GitHub issue #5)**
+* Is the service running on the network? (GitHub issue #5)
   + How can the northbound system be assured, with full certainty, that a configuration has been
     successfully installed on the network device?
   + What mechanisms or feedback loops exist to confirm successful configuration deployment beyond
@@ -208,7 +208,7 @@ not addressed today and are left to implementation choices.
   + If a configuration is manually removed via CLI at the network device, is there a mechanism to
     reflect this change northbound?
 
-* **Operational status clarification (GitHub issue #4)**
+* Operational status clarification (GitHub issue #4)
   + The interrelationships between the operational status of VPN services, VPN nodes, and VPN
     network access points represent another significant operational gap.
   + The status of a VPN service may depend on the status of the underlying VPN nodes and the
